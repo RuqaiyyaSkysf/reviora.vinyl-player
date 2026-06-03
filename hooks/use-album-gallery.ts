@@ -43,9 +43,18 @@ export function useAlbumGallery() {
     }
   }, [covers, isLoaded])
 
-  const addCover = useCallback((imageData: string) => {
+  const addCover = useCallback((imageData: string): { success: boolean; message?: string } => {
+    let canAdd = false
+    let errorMessage = ''
+
     setCoverState((prev) => {
-      let updated = [
+      if (prev.length >= MAX_COVERS) {
+        errorMessage = 'Album Cover Gallery is full. Please delete an existing album cover before adding a new one.'
+        return prev
+      }
+
+      canAdd = true
+      const updated = [
         ...prev,
         {
           id: `cover-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
@@ -53,14 +62,13 @@ export function useAlbumGallery() {
           timestamp: Date.now(),
         },
       ]
-
-      // If we exceed max covers, remove the oldest one
-      if (updated.length > MAX_COVERS) {
-        updated = updated.slice(-MAX_COVERS)
-      }
-
       return updated
     })
+
+    return {
+      success: canAdd,
+      message: errorMessage || undefined,
+    }
   }, [])
 
   const removeCover = useCallback((id: string) => {

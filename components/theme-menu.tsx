@@ -6,6 +6,8 @@ import { usePlayer, type Theme, type ViewMode, type VinylStyle, type Track } fro
 import { useAlbumGallery } from "@/hooks/use-album-gallery"
 import { cn } from "@/lib/utils"
 import { PlaylistMergeModal } from "./playlist-merge-modal"
+import { CollapsibleMenu } from "./collapsible-menu"
+import { GalleryPanel } from "./gallery-panel"
 
 const themes: { id: Theme; name: string; description: string; colors: string }[] = [
   {
@@ -113,13 +115,16 @@ const vinylStyles: { id: VinylStyle; name: string; description: string }[] = [
 export function ThemeMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [showLyricsOptions, setShowLyricsOptions] = useState(false)
+  const [showArtworkOptions, setShowArtworkOptions] = useState(false)
+  const [showGalleryPanel, setShowGalleryPanel] = useState(false)
   const [showMergeModal, setShowMergeModal] = useState(false)
+  const [galleryError, setGalleryError] = useState<string | null>(null)
   const [pendingFolderTracks, setPendingFolderTracks] = useState<Track[]>([])
   const audioInputRef = useRef<HTMLInputElement>(null)
   const artworkInputRef = useRef<HTMLInputElement>(null)
   const folderInputRef = useRef<HTMLInputElement>(null)
   const { theme, setTheme, viewMode, setViewMode, currentTrack, addToQueue, playTrack, setTrackArtwork, queue, setQueue, clearQueue, vinylStyle, setVinylStyle, vinylSize, setVinylSize, lyricsPanelOffset, setLyricsPanelOffset, vinylPlayerOffset, setVinylPlayerOffset } = usePlayer()
-  const { addCover } = useAlbumGallery()
+  const { addCover, covers } = useAlbumGallery()
 
   const themeButtonStyles: Record<Theme, string> = {
     black: "text-zinc-400 hover:text-white hover:bg-zinc-800",
@@ -329,9 +334,15 @@ export function ThemeMenu() {
       const reader = new FileReader()
       reader.onload = (event) => {
         const dataUrl = event.target?.result as string
-        setTrackArtwork(dataUrl)
-        addCover(dataUrl)
-        console.log("[v0] Artwork uploaded and saved to gallery")
+        const result = addCover(dataUrl)
+        
+        if (!result.success) {
+          setGalleryError(result.message || 'Failed to add cover')
+          setTimeout(() => setGalleryError(null), 5000)
+        } else {
+          setTrackArtwork(dataUrl)
+          console.log("[v0] Artwork uploaded and saved to gallery")
+        }
       }
       reader.readAsDataURL(file)
     }
@@ -456,58 +467,92 @@ export function ThemeMenu() {
                     "text-xs font-medium mb-3 uppercase tracking-wider",
                     theme === "pink" ? "text-pink-600" : "text-zinc-500"
                   )}>
-                    Lyrics & Media
+                    Media Controls
                   </p>
-                  <div className="space-y-1 mb-4">
-                    <button
-                      onClick={() => setShowLyricsOptions(!showLyricsOptions)}
-                      className={cn(
-                        "w-full flex items-center gap-3 p-2 rounded-lg transition-all duration-200",
-                        itemStyles[theme]
-                      )}
+                  <div className="space-y-2 mb-4">
+                    {/* Lyrics Collapsible */}
+                    <CollapsibleMenu
+                      title="Lyrics"
+                      isOpen={showLyricsOptions}
+                      onToggle={() => setShowLyricsOptions(!showLyricsOptions)}
                     >
-                      <div className={cn(
-                        "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0",
-                        theme === "pink" ? "bg-pink-50" : "bg-white/5"
-                      )}>
-                        <MessageSquareText className={cn("w-4 h-4", checkColors[theme])} />
-                      </div>
-                      <div className="text-left flex-1">
-                        <p className="font-medium text-sm">Lyrics</p>
-                        <p className={cn(
-                          "text-xs",
-                          theme === "pink" ? "text-zinc-500" : "text-zinc-400"
-                        )}>
-                          Upload, paste, or manage
-                        </p>
-                      </div>
-                    </button>
+                      <button
+                        onClick={() => setIsOpen(false)}
+                        className={cn(
+                          "w-full flex items-center gap-2 p-2 rounded-lg transition-all duration-200 text-sm",
+                          itemStyles[theme]
+                        )}
+                      >
+                        <Upload className="w-4 h-4" />
+                        Upload Lyrics
+                      </button>
+                      <button
+                        onClick={() => setIsOpen(false)}
+                        className={cn(
+                          "w-full flex items-center gap-2 p-2 rounded-lg transition-all duration-200 text-sm",
+                          itemStyles[theme]
+                        )}
+                      >
+                        <MessageSquareText className="w-4 h-4" />
+                        Paste Lyrics
+                      </button>
+                    </CollapsibleMenu>
 
-                    {showLyricsOptions && (
-                      <div className="pl-4 space-y-1 mt-1">
+                    {/* Artwork Collapsible */}
+                    <CollapsibleMenu
+                      title="Artwork"
+                      isOpen={showArtworkOptions}
+                      onToggle={() => setShowArtworkOptions(!showArtworkOptions)}
+                    >
+                      <button
+                        onClick={() => artworkInputRef.current?.click()}
+                        className={cn(
+                          "w-full flex items-center gap-2 p-2 rounded-lg transition-all duration-200 text-sm",
+                          itemStyles[theme]
+                        )}
+                      >
+                        <Upload className="w-4 h-4" />
+                        Upload Album Art
+                      </button>
+                      <button
+                        onClick={() => setShowGalleryPanel(true)}
+                        className={cn(
+                          "w-full flex items-center gap-2 p-2 rounded-lg transition-all duration-200 text-sm",
+                          itemStyles[theme]
+                        )}
+                      >
+                        <Image className="w-4 h-4" />
+                        Album Cover Gallery {covers.length > 0 && `(${covers.length}/15)`}
+                      </button>
+                      {currentTrack?.albumArt && (
                         <button
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => {
+                            setTrackArtwork(null)
+                            setShowArtworkOptions(false)
+                          }}
                           className={cn(
                             "w-full flex items-center gap-2 p-2 rounded-lg transition-all duration-200 text-sm",
                             itemStyles[theme]
                           )}
                         >
-                          <Upload className="w-4 h-4" />
-                          Upload Lyrics
+                          <X className="w-4 h-4" />
+                          Remove Artwork
                         </button>
-                        <button
-                          onClick={() => setIsOpen(false)}
-                          className={cn(
-                            "w-full flex items-center gap-2 p-2 rounded-lg transition-all duration-200 text-sm",
-                            itemStyles[theme]
-                          )}
-                        >
-                          <MessageSquareText className="w-4 h-4" />
-                          Paste Lyrics
-                        </button>
-                      </div>
-                    )}
+                      )}
+                    </CollapsibleMenu>
+                  </div>
 
+                  {/* Error message if gallery is full */}
+                  {galleryError && (
+                    <div className={cn(
+                      "text-xs p-2 rounded-lg mb-4",
+                      "bg-red-500/20 border border-red-500/50 text-red-200"
+                    )}>
+                      {galleryError}
+                    </div>
+                  )}
+
+                  <div className="space-y-1 mb-4">
                     <button
                       onClick={() => audioInputRef.current?.click()}
                       className={cn(
@@ -555,61 +600,6 @@ export function ThemeMenu() {
                         </p>
                       </div>
                     </button>
-
-                    <button
-                      onClick={() => artworkInputRef.current?.click()}
-                      className={cn(
-                        "w-full flex items-center gap-3 p-2 rounded-lg transition-all duration-200",
-                        itemStyles[theme]
-                      )}
-                    >
-                      <div className={cn(
-                        "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0",
-                        theme === "pink" ? "bg-pink-50" : "bg-white/5"
-                      )}>
-                        <Image className={cn("w-4 h-4", checkColors[theme])} />
-                      </div>
-                      <div className="text-left flex-1">
-                        <p className="font-medium text-sm">
-                          {currentTrack?.albumArt ? "Replace Artwork" : "Add Artwork"}
-                        </p>
-                        <p className={cn(
-                          "text-xs",
-                          theme === "pink" ? "text-zinc-500" : "text-zinc-400"
-                        )}>
-                          {currentTrack?.albumArt ? "Upload new album art" : "Upload album art"}
-                        </p>
-                      </div>
-                    </button>
-
-                    {currentTrack?.albumArt && (
-                      <button
-                        onClick={() => {
-                          setTrackArtwork(null)
-                          setIsOpen(false)
-                        }}
-                        className={cn(
-                          "w-full flex items-center gap-3 p-2 rounded-lg transition-all duration-200",
-                          itemStyles[theme]
-                        )}
-                      >
-                        <div className={cn(
-                          "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0",
-                          theme === "pink" ? "bg-pink-50" : "bg-white/5"
-                        )}>
-                          <X className={cn("w-4 h-4", checkColors[theme])} />
-                        </div>
-                        <div className="text-left flex-1">
-                          <p className="font-medium text-sm">Remove Artwork</p>
-                          <p className={cn(
-                            "text-xs",
-                            theme === "pink" ? "text-zinc-500" : "text-zinc-400"
-                          )}>
-                            Revert to default vinyl
-                          </p>
-                        </div>
-                      </button>
-                    )}
                   </div>
 
                   {/* Divider */}
@@ -817,6 +807,8 @@ export function ThemeMenu() {
           </div>
         </>
       )}
+
+      {showGalleryPanel && <GalleryPanel onClose={() => setShowGalleryPanel(false)} />}
 
       <PlaylistMergeModal
         isOpen={showMergeModal}
