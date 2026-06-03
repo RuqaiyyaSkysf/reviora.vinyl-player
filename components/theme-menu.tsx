@@ -496,6 +496,21 @@ export function ThemeMenu() {
                         <MessageSquareText className="w-4 h-4" />
                         Paste Lyrics
                       </button>
+                      {currentTrack?.lyrics && currentTrack.lyrics.length > 0 && (
+                        <button
+                          onClick={() => {
+                            setTrackLyrics([])
+                            setShowLyricsOptions(false)
+                          }}
+                          className={cn(
+                            "w-full flex items-center gap-2 p-2 rounded-lg transition-all duration-200 text-sm",
+                            itemStyles[theme]
+                          )}
+                        >
+                          <X className="w-4 h-4" />
+                          Remove Current Lyrics
+                        </button>
+                      )}
                     </CollapsibleMenu>
 
                     {/* Artwork Collapsible */}
