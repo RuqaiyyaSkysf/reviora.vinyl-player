@@ -27,11 +27,13 @@ export function MasjidBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Deep midnight blue gradient background */}
+      {/* Background image - masjid with night sky */}
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at center top, rgb(30, 58, 138) 0%, rgb(15, 35, 80) 50%, rgb(10, 20, 50) 100%)",
+          backgroundImage: "url('/images/masjid-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
 
