@@ -32,8 +32,10 @@ export function MasjidBackground() {
         className="absolute inset-0"
         style={{
           backgroundImage: "url('/images/masjid-bg.jpg')",
-          backgroundSize: "cover",
+          backgroundSize: "contain",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          imageRendering: "crisp-edges",
         }}
       />
 
