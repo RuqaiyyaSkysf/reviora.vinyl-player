@@ -123,7 +123,7 @@ export function ThemeMenu() {
   const audioInputRef = useRef<HTMLInputElement>(null)
   const artworkInputRef = useRef<HTMLInputElement>(null)
   const folderInputRef = useRef<HTMLInputElement>(null)
-  const { theme, setTheme, viewMode, setViewMode, currentTrack, addToQueue, playTrack, setTrackArtwork, queue, setQueue, clearQueue, vinylStyle, setVinylStyle, vinylSize, setVinylSize, lyricsPanelOffset, setLyricsPanelOffset, vinylPlayerOffset, setVinylPlayerOffset } = usePlayer()
+  const { theme, setTheme, viewMode, setViewMode, currentTrack, addToQueue, playTrack, setTrackArtwork, setTrackLyrics, queue, setQueue, clearQueue, vinylStyle, setVinylStyle, vinylSize, setVinylSize, lyricsPanelOffset, setLyricsPanelOffset, vinylPlayerOffset, setVinylPlayerOffset } = usePlayer()
   const { addCover, covers } = useAlbumGallery()
 
   const themeButtonStyles: Record<Theme, string> = {
