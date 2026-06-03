@@ -56,7 +56,7 @@ export function TrackInfo() {
     },
   }
 
-  const styles = themeStyles[theme]
+  const styles = themeStyles[theme] || themeStyles.black
 
   if (!currentTrack) {
     return (
