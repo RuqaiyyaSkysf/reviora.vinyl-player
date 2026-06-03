@@ -4,74 +4,74 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: oklch(0.1 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.12 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.12 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.2 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.2 0 0);
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.25 0 0);
+  --input: oklch(0.25 0 0);
+  --ring: oklch(0.5 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.12 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.985 0 0);
+  --sidebar-primary-foreground: oklch(0.1 0 0);
+  --sidebar-accent: oklch(0.2 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.25 0 0);
+  --sidebar-ring: oklch(0.5 0 0);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.1 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
+  --card: oklch(0.12 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
+  --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.2 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
+  --border: oklch(0.25 0 0);
+  --input: oklch(0.25 0 0);
+  --ring: oklch(0.5 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.12 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.2 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --sidebar-border: oklch(0.25 0 0);
+  --sidebar-ring: oklch(0.5 0 0);
 }
 
 @theme inline {
@@ -122,4 +122,618 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Smooth pulse animation for ambient glow */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+/* Gentle breathing animation */
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Galaxy theme - Star twinkling (normal stars) */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+/* Galaxy theme - Subtle twinkle for dim stars */
+@keyframes twinkle-subtle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.05);
+  }
+}
+
+/* Galaxy theme - Bright twinkle for prominent stars */
+@keyframes twinkle-bright {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.1);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Galaxy theme - Shooting star full screen diagonal movement */
+@keyframes shooting-star-move {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.6;
+  }
+  5% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.3;
+  }
+  100% {
+    /* Travel 200vw to ensure it crosses the entire screen diagonally */
+    transform: translateX(200vw);
+    opacity: 0;
+  }
+}
+
+/* Shooting star mover - handles the translation */
+.shooting-star-mover {
+  will-change: transform;
+  position: relative;
+}
+
+/* Galaxy theme - Large star deep sparkle */
+@keyframes sparkle-deep {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  20% {
+    opacity: 0.9;
+    transform: scale(1.15);
+    filter: brightness(1.2);
+  }
+  40% {
+    opacity: 0.7;
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: brightness(1.3);
+  }
+  80% {
+    opacity: 0.65;
+    transform: scale(0.95);
+    filter: brightness(1);
+  }
+}
+
+/* Galaxy theme - Original sparkle (kept for compatibility) */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.9);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Flame theme - Slow sway for base flames */
+@keyframes flame-sway-slow {
+  0%, 100% {
+    transform: scaleY(1) scaleX(1) translateX(0);
+    opacity: 0.7;
+  }
+  25% {
+    transform: scaleY(1.08) scaleX(0.98) translateX(-1%);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scaleY(0.95) scaleX(1.02) translateX(0.5%);
+    opacity: 0.65;
+  }
+  75% {
+    transform: scaleY(1.03) scaleX(0.99) translateX(-0.5%);
+    opacity: 0.75;
+  }
+}
+
+/* Flame theme - Medium sway for mid flames */
+@keyframes flame-sway-medium {
+  0%, 100% {
+    transform: scaleY(1) translateX(0) translateY(0);
+    opacity: 0.6;
+  }
+  20% {
+    transform: scaleY(1.1) translateX(1%) translateY(-2%);
+    opacity: 0.7;
+  }
+  40% {
+    transform: scaleY(0.92) translateX(-0.5%) translateY(1%);
+    opacity: 0.55;
+  }
+  60% {
+    transform: scaleY(1.05) translateX(0.5%) translateY(-1%);
+    opacity: 0.65;
+  }
+  80% {
+    transform: scaleY(0.97) translateX(-1%) translateY(0);
+    opacity: 0.6;
+  }
+}
+
+/* Flame theme - Fast sway for upper flames */
+@keyframes flame-sway-fast {
+  0%, 100% {
+    transform: scaleY(1) translateX(0);
+    opacity: 0.55;
+  }
+  16% {
+    transform: scaleY(1.12) translateX(1.5%);
+    opacity: 0.65;
+  }
+  33% {
+    transform: scaleY(0.9) translateX(-1%);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(1.08) translateX(0.5%);
+    opacity: 0.6;
+  }
+  66% {
+    transform: scaleY(0.95) translateX(-1.5%);
+    opacity: 0.52;
+  }
+  83% {
+    transform: scaleY(1.05) translateX(1%);
+    opacity: 0.58;
+  }
+}
+
+/* Flame theme - Flicker for bright flames */
+@keyframes flame-flicker {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scaleY(1) scaleX(1);
+  }
+  10% {
+    opacity: 0.6;
+    transform: scaleY(1.05) scaleX(0.98);
+  }
+  20% {
+    opacity: 0.45;
+    transform: scaleY(0.95) scaleX(1.02);
+  }
+  30% {
+    opacity: 0.55;
+    transform: scaleY(1.08) scaleX(0.97);
+  }
+  40% {
+    opacity: 0.48;
+    transform: scaleY(0.92) scaleX(1.01);
+  }
+  50% {
+    opacity: 0.58;
+    transform: scaleY(1.03) scaleX(0.99);
+  }
+  60% {
+    opacity: 0.42;
+    transform: scaleY(0.97) scaleX(1.02);
+  }
+  70% {
+    opacity: 0.55;
+    transform: scaleY(1.06) scaleX(0.98);
+  }
+  80% {
+    opacity: 0.5;
+    transform: scaleY(0.94) scaleX(1);
+  }
+  90% {
+    opacity: 0.52;
+    transform: scaleY(1.02) scaleX(0.99);
+  }
+}
+
+/* Flame theme - Core pulse */
+@keyframes flame-core-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scaleY(1) scaleX(1);
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 0.5;
+    transform: scaleY(1.1) scaleX(0.95);
+    filter: brightness(1.1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scaleY(0.9) scaleX(1.05);
+    filter: brightness(0.95);
+  }
+  75% {
+    opacity: 0.48;
+    transform: scaleY(1.05) scaleX(0.98);
+    filter: brightness(1.05);
+  }
+}
+
+/* Flame theme - Individual flame tongues */
+@keyframes flame-tongue {
+  0%, 100% {
+    transform: translateX(-50%) scaleY(1) scaleX(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateX(-48%) scaleY(1.15) scaleX(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(-52%) scaleY(0.85) scaleX(1.1);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateX(-49%) scaleY(1.1) scaleX(0.95);
+    opacity: 0.65;
+  }
+}
+
+/* Flame theme - Alternate flame tongues */
+@keyframes flame-tongue-alt {
+  0%, 100% {
+    transform: translateX(-50%) scaleY(1) scaleX(1);
+    opacity: 0.5;
+  }
+  33% {
+    transform: translateX(-53%) scaleY(1.2) scaleX(0.88);
+    opacity: 0.6;
+  }
+  66% {
+    transform: translateX(-47%) scaleY(0.9) scaleX(1.08);
+    opacity: 0.45;
+  }
+}
+
+/* Flame theme - Floating ember particles */
+@keyframes ember-float {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  20% {
+    transform: translateY(-15vh) translateX(calc(var(--ember-drift) * 0.3)) scale(0.95);
+    opacity: 0.7;
+  }
+  40% {
+    transform: translateY(-30vh) translateX(calc(var(--ember-drift) * 0.6)) scale(0.85);
+    opacity: 0.55;
+  }
+  60% {
+    transform: translateY(-45vh) translateX(calc(var(--ember-drift) * 0.8)) scale(0.7);
+    opacity: 0.4;
+  }
+  80% {
+    transform: translateY(-60vh) translateX(calc(var(--ember-drift) * 0.95)) scale(0.5);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-75vh) translateX(var(--ember-drift)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* Flame theme - Heat wave distortion */
+@keyframes heat-wave {
+  0%, 100% {
+    opacity: 0.08;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 0.12;
+    transform: scaleX(1.02);
+  }
+}
+
+/* Flame theme - Smoke rise */
+@keyframes smoke-rise {
+  0%, 100% {
+    opacity: 0.15;
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translateY(-5%) scaleY(1.05);
+  }
+}
+
+/* Pink theme - Delicate sparkle animation */
+@keyframes pink-sparkle {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.3);
+  }
+}
+
+.animate-pink-sparkle {
+  animation: pink-sparkle ease-in-out infinite;
+}
+
+/* Pink theme - Soft glow pulse */
+@keyframes pink-glow {
+  0%, 100% {
+    opacity: 0.2;
+    filter: blur(40px);
+  }
+  50% {
+    opacity: 0.35;
+    filter: blur(50px);
+  }
+}
+
+.animate-pink-glow {
+  animation: pink-glow 6s ease-in-out infinite;
+}
+
+/* Pink theme - Floating petal drift (like traffic lights but softer) */
+@keyframes pink-petal-float {
+  0% {
+    top: -10%;
+    opacity: 0;
+    transform: rotate(0deg) translateX(0);
+  }
+  10% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: rotate(180deg) translateX(20px);
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+    transform: rotate(360deg) translateX(-10px);
+  }
+}
+
+/* Pink theme - Billboard-like soft glow flicker */
+@keyframes pink-billboard-flicker {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  20% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.28;
+  }
+  70% {
+    opacity: 0.38;
+  }
+  85% {
+    opacity: 0.3;
+  }
+}
+
+/* Night City theme - Traffic lights moving left */
+@keyframes traffic-left {
+  0% {
+    left: 110%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: -10%;
+    opacity: 0;
+  }
+}
+
+/* Night City theme - Traffic lights moving right */
+@keyframes traffic-right {
+  0% {
+    left: -10%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+/* Night City theme - Neon billboard flicker */
+@keyframes neon-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  10% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.7;
+  }
+  60% {
+    opacity: 1;
+  }
+}
+
+/* Gothic theme - Drifting fog */
+@keyframes fog-drift {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+}
+
+/* Vintage theme - Floating dust particles */
+@keyframes dust-float {
+  0% {
+    top: 110%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    top: -10%;
+    opacity: 0;
+  }
+}
+
+/* Theme transition for smooth color changes */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exception for transforms and other properties that shouldn't inherit theme transition */
+button, 
+a, 
+[role="button"],
+input[type="range"]::-webkit-slider-thumb {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow, transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0 0);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0 0);
+}
+
+/* Selection styling */
+::selection {
+  background: oklch(0.5 0.1 250);
+  color: oklch(0.98 0 0);
+}
+
+/* Focus visible styles for accessibility */
+:focus-visible {
+  outline: 2px solid oklch(0.6 0.15 250);
+  outline-offset: 2px;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent text selection on player controls */
+.player-controls {
+  user-select: none;
+  -webkit-user-select: none;
 }
