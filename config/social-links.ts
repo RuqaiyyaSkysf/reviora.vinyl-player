@@ -4,4 +4,5 @@ export const SOCIAL_LINKS = {
   instagram: "https://instagram.com/raya.1ity",
   youtube: "https://youtube.com/@raya.1ity?si=_RoIACpgwrxOfypg",
   pinterest: "https://pinterest.com/rayaxizel",
+  linkedin: "https://www.linkedin.com/in/ruqaiyya-shaik-yusuf-raya-izel-d02938",
 } as const
