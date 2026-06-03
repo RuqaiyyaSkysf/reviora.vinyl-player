@@ -50,6 +50,10 @@ export function TrackInfo() {
       title: "text-amber-100",
       artist: "text-amber-400",
     },
+    masjid: {
+      title: "text-green-100",
+      artist: "text-green-400",
+    },
   }
 
   const styles = themeStyles[theme]
