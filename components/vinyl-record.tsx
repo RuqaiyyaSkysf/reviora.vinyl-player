@@ -304,6 +304,15 @@ export function VinylRecord() {
       progressGlow: "rgba(229,231,235,0.7)",
       innerShadow: "shadow-[inset_0_0_60px_rgba(0,0,0,0.7)]",
     },
+    "desert-moon": {
+      vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
+      grooves: "border-blue-400/10",
+      label: "bg-gradient-to-br from-blue-200 to-blue-300",
+      glow: "rgba(147,197,253,0.3)",
+      progressRing: "rgba(147,197,253,0.9)",
+      progressGlow: "rgba(147,197,253,0.6)",
+      innerShadow: "shadow-[inset_0_0_60px_rgba(0,0,0,0.7)]",
+    },
   }
 
   const styles = themeStyles[theme] || themeStyles.black

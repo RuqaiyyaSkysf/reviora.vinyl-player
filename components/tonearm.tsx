@@ -162,6 +162,16 @@ export function Tonearm() {
       needleGlow: "rgba(229,231,235,0.5)",
       shadow: "rgba(0,0,0,0.5)",
     },
+    "desert-moon": {
+      arm: "from-blue-300 via-blue-400 to-blue-500",
+      armHighlight: "rgba(147,197,253,0.3)",
+      base: "from-blue-700 to-blue-800",
+      baseHighlight: "from-blue-600 to-blue-700",
+      head: "from-blue-200 to-blue-400",
+      needle: "from-blue-100 to-blue-300",
+      needleGlow: "rgba(147,197,253,0.5)",
+      shadow: "rgba(0,0,0,0.5)",
+    },
   }
 
   const colors = themeColors[theme]

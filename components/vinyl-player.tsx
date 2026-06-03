@@ -22,6 +22,7 @@ import { NightCityBackground } from "./backgrounds/night-city-background"
 import { GothicBackground } from "./backgrounds/gothic-background"
 import { VintageBackground } from "./backgrounds/vintage-background"
 import { MasjidBackground } from "./backgrounds/masjid-background"
+import { DesertMoonBackground } from "./backgrounds/desert-moon-background"
 import { CreatorCredit } from "./creator-credit"
 import { cn } from "@/lib/utils"
 
@@ -138,6 +139,8 @@ export function VinylPlayer() {
         return "bg-amber-950/50 shadow-[0_20px_60px_-15px_rgba(180,130,60,0.25)] backdrop-blur-sm border border-amber-700/30"
       case "masjid":
         return "bg-blue-950/50 shadow-[0_20px_60px_-15px_rgba(59,130,246,0.2)] backdrop-blur-sm border border-blue-400/20"
+      case "desert-moon":
+        return "bg-slate-950/50 shadow-[0_20px_60px_-15px_rgba(100,120,160,0.2)] backdrop-blur-sm border border-slate-600/20"
       default:
         return "bg-zinc-900/50 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] backdrop-blur-sm"
     }
@@ -208,6 +211,14 @@ export function VinylPlayer() {
         )}
       >
         {(displayTheme === "masjid" || theme === "masjid") && <MasjidBackground />}
+      </div>
+      <div 
+        className={cn(
+          "absolute inset-0 transition-opacity duration-500 ease-in-out",
+          displayTheme === "desert-moon" ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
+        {(displayTheme === "desert-moon" || theme === "desert-moon") && <DesertMoonBackground />}
       </div>
 
       {/* Blood red ambient glow */}

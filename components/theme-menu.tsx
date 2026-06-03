@@ -77,6 +77,12 @@ const themes: { id: Theme; name: string; description: string; colors: string }[]
     description: "Premium Arabic calligraphy, luxury dark",
     colors: "bg-gradient-to-b from-gray-950 via-black to-gray-950",
   },
+  {
+    id: "desert-moon",
+    name: "Desert Moon",
+    description: "Moonlit desert, camels under stars",
+    colors: "bg-gradient-to-b from-blue-950 via-slate-950 to-slate-900",
+  },
 ]
 
 const viewModes: { id: ViewMode; name: string; description: string; icon: typeof Disc }[] = [
@@ -147,6 +153,7 @@ export function ThemeMenu() {
     gothic: "text-purple-300 hover:text-purple-100 hover:bg-purple-950/50",
     vintage: "text-amber-300 hover:text-amber-100 hover:bg-amber-900/50",
     masjid: "text-blue-300 hover:text-blue-100 hover:bg-blue-900/50",
+    "desert-moon": "text-blue-300 hover:text-cyan-200 hover:bg-blue-900/50",
   }
 
   const menuStyles: Record<Theme, string> = {

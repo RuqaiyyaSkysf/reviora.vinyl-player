@@ -160,6 +160,17 @@ export function PlayerControls() {
       volumeFill: "bg-gradient-to-r from-gray-400 to-gray-300",
       text: "text-gray-400",
     },
+    "desert-moon": {
+      button: "text-blue-300/70 hover:text-blue-200 hover:bg-blue-900/30 active:scale-95",
+      playButton: "bg-gradient-to-r from-blue-600 to-blue-700 text-blue-100 hover:from-blue-500 hover:to-blue-600 hover:shadow-[0_0_40px_rgba(147,197,253,0.6)] active:scale-95",
+      playButtonShadow: "shadow-[0_8px_30px_rgba(147,197,253,0.4)]",
+      progress: "bg-blue-900/40",
+      progressFill: "bg-gradient-to-r from-blue-400 to-blue-300",
+      progressThumb: "bg-blue-300 shadow-[0_0_15px_rgba(147,197,253,0.8)]",
+      volume: "bg-blue-900/40",
+      volumeFill: "bg-gradient-to-r from-blue-400 to-blue-300",
+      text: "text-blue-300",
+    },
   }
 
   const styles = themeStyles[theme] || themeStyles.black
