@@ -14,14 +14,14 @@ export function HomepageUpload() {
   const [showMergeModal, setShowMergeModal] = useState(false)
   const [pendingFolderTracks, setPendingFolderTracks] = useState<Track[]>([])
 
-  // Helper: Check if track already exists in queue by title
-  const isDuplicateTrack = (title: string, artist: string): boolean => {
-    return queue.some((t) => t.title === title && t.artist === artist)
+  // Helper: Check if track already exists in queue by title and artist
+  const isDuplicateTrack = (title: string, artist: string, compareQueue: Track[]): boolean => {
+    return compareQueue.some((t) => t.title === title && t.artist === artist)
   }
 
-  // Helper: Filter out duplicates from tracks
-  const filterDuplicates = (tracks: Track[]): Track[] => {
-    return tracks.filter((t) => !isDuplicateTrack(t.title, t.artist))
+  // Helper: Filter out duplicates from tracks, comparing against a specific queue
+  const filterDuplicates = (tracks: Track[], compareQueue: Track[]): Track[] => {
+    return tracks.filter((t) => !isDuplicateTrack(t.title, t.artist, compareQueue))
   }
 
   const handleUploadSong = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,7 @@ export function HomepageUpload() {
         const title = file.name.replace(/\.[^/.]+$/, "")
         
         // Skip if this track is already in the queue
-        if (isDuplicateTrack(title, "Local File")) {
+        if (isDuplicateTrack(title, "Local File", queue)) {
           console.log(`[v0] Skipping duplicate: ${title}`)
           return
         }
@@ -108,22 +108,15 @@ export function HomepageUpload() {
       return track
     })
 
-    // Filter out duplicates from new tracks
-    const uniqueNewTracks = filterDuplicates(newTracks)
-
-    if (uniqueNewTracks.length === 0) {
-      console.log("[v0] All tracks are duplicates")
-      return
-    }
-
-    // If playlist already exists, show merge/replace modal
+    // If playlist already exists, show merge/replace modal with all new tracks
+    // (duplicates will be handled during merge/replace)
     if (queue.length > 0) {
-      setPendingFolderTracks(uniqueNewTracks)
+      setPendingFolderTracks(newTracks)
       setShowMergeModal(true)
     } else {
       // If no existing playlist, just load the new one
-      playTrack(uniqueNewTracks[0])
-      uniqueNewTracks.slice(1).forEach((track) => {
+      playTrack(newTracks[0])
+      newTracks.slice(1).forEach((track) => {
         addToQueue(track)
       })
     }
@@ -134,10 +127,17 @@ export function HomepageUpload() {
   }
 
   const handleMergePlaylist = () => {
-    pendingFolderTracks.forEach((track) => {
-      if (!isDuplicateTrack(track.title, track.artist)) {
-        addToQueue(track)
-      }
+    // Filter pending tracks to exclude duplicates already in queue
+    const tracksToAdd = filterDuplicates(pendingFolderTracks, queue)
+    
+    console.log("[v0] Merging playlist:", {
+      pending: pendingFolderTracks.length,
+      toAdd: tracksToAdd.length,
+      current: queue.length,
+    })
+    
+    tracksToAdd.forEach((track) => {
+      addToQueue(track)
     })
     setPendingFolderTracks([])
     setShowMergeModal(false)
@@ -145,9 +145,16 @@ export function HomepageUpload() {
 
   const handleReplacePlaylist = () => {
     if (pendingFolderTracks.length > 0) {
-      // Replace the entire queue with pending tracks
+      console.log("[v0] Replacing playlist:", {
+        old: queue.length,
+        new: pendingFolderTracks.length,
+      })
+      
+      // Completely replace the queue - this clears the old playlist entirely
+      // and ignores the currently playing track
       setQueue(pendingFolderTracks, 0)
-      // Ensure playback starts on first track
+      
+      // Ensure playback starts on first track from the new folder
       if (pendingFolderTracks[0].url) {
         playTrack(pendingFolderTracks[0])
       }

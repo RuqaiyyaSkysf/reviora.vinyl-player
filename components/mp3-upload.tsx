@@ -176,6 +176,13 @@ export function MP3Upload() {
         console.log("[v0] Could not extract metadata:", error)
       }
 
+      // Check for duplicate before adding
+      const isDuplicate = queue.some((t) => t.title === track.title && t.artist === track.artist)
+      if (isDuplicate) {
+        console.log(`[v0] Skipping duplicate single upload: ${track.title}`)
+        return
+      }
+
       // Always use addToQueue for consistency — it handles playback and persistence
       addToQueue(track)
       
@@ -185,7 +192,7 @@ export function MP3Upload() {
         addCover(track.albumArt)
       }
     },
-    [addToQueue, setTrackArtwork, addCover]
+    [addToQueue, setTrackArtwork, addCover, queue]
   )
 
   const handleDrop = useCallback(
