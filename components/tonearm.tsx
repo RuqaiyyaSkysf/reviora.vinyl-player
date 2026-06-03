@@ -152,6 +152,16 @@ export function Tonearm() {
       needleGlow: "rgba(251,191,36,0.7)",
       shadow: "rgba(180,130,60,0.4)",
     },
+    masjid: {
+      arm: "from-blue-300 via-blue-400 to-cyan-500",
+      armHighlight: "rgba(59,130,246,0.3)",
+      base: "from-blue-600 to-blue-800",
+      baseHighlight: "from-blue-500 to-blue-600",
+      head: "from-blue-200 to-cyan-300",
+      needle: "from-blue-300 to-cyan-500",
+      needleGlow: "rgba(147,197,253,0.7)",
+      shadow: "rgba(59,130,246,0.4)",
+    },
   }
 
   const colors = themeColors[theme]
