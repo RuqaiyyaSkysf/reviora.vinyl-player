@@ -149,9 +149,20 @@ export function PlayerControls() {
       volumeFill: "bg-gradient-to-r from-amber-500 to-yellow-500",
       text: "text-amber-400",
     },
+    masjid: {
+      button: "text-green-400/70 hover:text-green-300 hover:bg-green-900/30 active:scale-95",
+      playButton: "bg-gradient-to-r from-green-600 to-emerald-700 text-green-100 hover:from-green-500 hover:to-emerald-600 hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] active:scale-95",
+      playButtonShadow: "shadow-[0_8px_30px_rgba(16,185,129,0.4)]",
+      progress: "bg-green-900/40",
+      progressFill: "bg-gradient-to-r from-green-500 to-emerald-500",
+      progressThumb: "bg-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.8)]",
+      volume: "bg-green-900/40",
+      volumeFill: "bg-gradient-to-r from-green-500 to-emerald-500",
+      text: "text-green-400",
+    },
   }
 
-  const styles = themeStyles[theme]
+  const styles = themeStyles[theme] || themeStyles.black
 
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
