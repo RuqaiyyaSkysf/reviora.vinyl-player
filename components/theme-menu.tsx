@@ -73,9 +73,9 @@ const themes: { id: Theme; name: string; description: string; colors: string }[]
   },
   {
     id: "masjid",
-    name: "Masjid Serenity",
-    description: "Midnight moon, peaceful mosque",
-    colors: "bg-gradient-to-b from-blue-950 via-slate-950 to-blue-950",
+    name: "Arabic Flow",
+    description: "Premium Arabic calligraphy, luxury dark",
+    colors: "bg-gradient-to-b from-gray-950 via-black to-gray-950",
   },
 ]
 

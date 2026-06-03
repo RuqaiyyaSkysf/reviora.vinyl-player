@@ -677,10 +677,10 @@
     top: -10%;
     opacity: 0;
   }
-}
-
-/* Masjid Serenity theme - Soft moon glow */
-@keyframes moon-glow {
+  }
+  
+  /* Arabic Flow theme - Soft glow accent */
+  @keyframes moon-glow {
   0%, 100% {
     opacity: 0.15;
     filter: blur(60px);
@@ -695,10 +695,10 @@
 
 .animate-moon-glow {
   animation: moon-glow 8s ease-in-out infinite;
-}
-
-/* Masjid Serenity theme - Gentle floating particles */
-@keyframes serenity-particle-float {
+  }
+  
+  /* Arabic Flow theme - Gentle floating particles */
+  @keyframes serenity-particle-float {
   0% {
     transform: translateY(100vh) translateX(0) scale(0.8) rotate(0deg);
     opacity: 0;
@@ -721,10 +721,10 @@
 
 .animate-serenity-particle {
   animation: serenity-particle-float 12s ease-in-out infinite;
-}
-
-/* Masjid Serenity theme - Subtle star twinkle */
-@keyframes serenity-star-twinkle {
+  }
+  
+  /* Arabic Flow theme - Subtle star twinkle */
+  @keyframes serenity-star-twinkle {
   0%, 100% {
     opacity: 0.2;
     transform: scale(0.8);
@@ -737,10 +737,10 @@
 
 .animate-serenity-star {
   animation: serenity-star-twinkle 5s ease-in-out infinite;
-}
-
-/* Masjid Serenity theme - Atmospheric haze */
-@keyframes serenity-haze {
+  }
+  
+  /* Arabic Flow theme - Atmospheric haze */
+  @keyframes serenity-haze {
   0%, 100% {
     opacity: 0.08;
   }

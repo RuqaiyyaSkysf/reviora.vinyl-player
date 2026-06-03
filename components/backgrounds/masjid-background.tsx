@@ -27,16 +27,16 @@ export function MasjidBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Background image - masjid with night sky */}
+      {/* Background image - Arabic calligraphy */}
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/images/masjid-bg.jpg')",
+          backgroundImage: "url('/images/arabic-calligraphy-bg.png')",
           backgroundSize: "cover",
-          backgroundPosition: "center bottom",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          imageRendering: "high-quality",
-          filter: "brightness(1.05) contrast(1.08) saturate(0.95)",
+          imageRendering: "crisp-edges",
+          filter: "brightness(0.98) contrast(1.15) saturate(0.92)",
         }}
       />
 
