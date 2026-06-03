@@ -250,11 +250,21 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   }
 
   const playTrack = (track: Track) => {
-    // Immediately set as current track and play it
-    setCurrentTrack(track)
-    setCurrentTime(0)
-    setQueueState([track])
-    setQueueIndex(0)
+    // Check if track exists in the current queue
+    const trackIndex = queue.findIndex(t => t.id === track.id)
+    
+    if (trackIndex !== -1) {
+      // Track exists in queue, just update the current track and index
+      setCurrentTrack(track)
+      setCurrentTime(0)
+      setQueueIndex(trackIndex)
+    } else {
+      // Track doesn't exist in queue, add it and play
+      setQueueState((prev) => [...prev, track])
+      setCurrentTrack(track)
+      setCurrentTime(0)
+      setQueueIndex(queue.length)
+    }
     
     // Auto-switch to Full View when music starts playing
     setViewMode("vinyl-playlist-lyrics")
