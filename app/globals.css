@@ -679,6 +679,76 @@
   }
 }
 
+/* Masjid Serenity theme - Soft moon glow */
+@keyframes moon-glow {
+  0%, 100% {
+    opacity: 0.15;
+    filter: blur(60px);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    filter: blur(70px);
+    transform: scale(1.05);
+  }
+}
+
+.animate-moon-glow {
+  animation: moon-glow 8s ease-in-out infinite;
+}
+
+/* Masjid Serenity theme - Gentle floating particles */
+@keyframes serenity-particle-float {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--particle-drift, 0)) scale(0.9) rotate(180deg);
+    opacity: 0.5;
+  }
+  95% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(calc(var(--particle-drift, 0) * 2)) scale(0.7) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-serenity-particle {
+  animation: serenity-particle-float 12s ease-in-out infinite;
+}
+
+/* Masjid Serenity theme - Subtle star twinkle */
+@keyframes serenity-star-twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.animate-serenity-star {
+  animation: serenity-star-twinkle 5s ease-in-out infinite;
+}
+
+/* Masjid Serenity theme - Atmospheric haze */
+@keyframes serenity-haze {
+  0%, 100% {
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
 /* Theme transition for smooth color changes */
 * {
   transition-property: background-color, border-color, color, fill, stroke, box-shadow;

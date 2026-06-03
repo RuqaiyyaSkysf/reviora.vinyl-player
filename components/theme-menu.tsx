@@ -71,6 +71,12 @@ const themes: { id: Theme; name: string; description: string; colors: string }[]
     description: "Royal palace, warm candlelight",
     colors: "bg-gradient-to-br from-amber-900 via-yellow-900 to-amber-950",
   },
+  {
+    id: "masjid",
+    name: "Masjid Serenity",
+    description: "Midnight moon, peaceful mosque",
+    colors: "bg-gradient-to-b from-blue-950 via-slate-950 to-blue-950",
+  },
 ]
 
 const viewModes: { id: ViewMode; name: string; description: string; icon: typeof Disc }[] = [
@@ -140,6 +146,7 @@ export function ThemeMenu() {
     nightcity: "text-purple-400 hover:text-cyan-300 hover:bg-purple-900/50",
     gothic: "text-purple-300 hover:text-purple-100 hover:bg-purple-950/50",
     vintage: "text-amber-300 hover:text-amber-100 hover:bg-amber-900/50",
+    masjid: "text-blue-300 hover:text-blue-100 hover:bg-blue-900/50",
   }
 
   const menuStyles: Record<Theme, string> = {
@@ -153,6 +160,7 @@ export function ThemeMenu() {
     nightcity: "bg-zinc-950/95 border-purple-500/30 backdrop-blur-xl",
     gothic: "bg-slate-950/95 border-purple-900/40 backdrop-blur-xl",
     vintage: "bg-amber-950/95 border-amber-700/40 backdrop-blur-xl",
+    masjid: "bg-blue-950/95 border-blue-400/20 backdrop-blur-xl",
   }
 
   const itemStyles: Record<Theme, string> = {
@@ -166,6 +174,7 @@ export function ThemeMenu() {
     nightcity: "hover:bg-purple-900/50 text-purple-100",
     gothic: "hover:bg-purple-950/50 text-purple-100",
     vintage: "hover:bg-amber-900/40 text-amber-100",
+    masjid: "hover:bg-blue-900/30 text-blue-100",
   }
 
   const checkColors: Record<Theme, string> = {
@@ -179,6 +188,7 @@ export function ThemeMenu() {
     nightcity: "text-cyan-400",
     gothic: "text-purple-400",
     vintage: "text-amber-400",
+    masjid: "text-blue-300",
   }
 
   // Helper: Check if track already exists in queue by title

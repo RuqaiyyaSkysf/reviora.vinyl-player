@@ -21,6 +21,7 @@ import { PinkBackground } from "./backgrounds/pink-background"
 import { NightCityBackground } from "./backgrounds/night-city-background"
 import { GothicBackground } from "./backgrounds/gothic-background"
 import { VintageBackground } from "./backgrounds/vintage-background"
+import { MasjidBackground } from "./backgrounds/masjid-background"
 import { CreatorCredit } from "./creator-credit"
 import { cn } from "@/lib/utils"
 
@@ -109,6 +110,11 @@ export function VinylPlayer() {
       gradient: "",
       overlay: "",
     },
+    masjid: {
+      bg: "bg-blue-950",
+      gradient: "bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.15)_0%,transparent_50%)]",
+      overlay: "before:absolute before:inset-0 before:bg-blue-950 before:-z-10",
+    },
   }
 
   const styles = themeStyles[theme]
@@ -130,6 +136,8 @@ export function VinylPlayer() {
         return "bg-slate-950/60 shadow-[0_20px_60px_-15px_rgba(100,80,160,0.25)] backdrop-blur-sm border border-purple-900/30"
       case "vintage":
         return "bg-amber-950/50 shadow-[0_20px_60px_-15px_rgba(180,130,60,0.25)] backdrop-blur-sm border border-amber-700/30"
+      case "masjid":
+        return "bg-blue-950/50 shadow-[0_20px_60px_-15px_rgba(59,130,246,0.2)] backdrop-blur-sm border border-blue-400/20"
       default:
         return "bg-zinc-900/50 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] backdrop-blur-sm"
     }
@@ -192,6 +200,14 @@ export function VinylPlayer() {
         )}
       >
         {(displayTheme === "vintage" || theme === "vintage") && <VintageBackground />}
+      </div>
+      <div 
+        className={cn(
+          "absolute inset-0 transition-opacity duration-500 ease-in-out",
+          displayTheme === "masjid" ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
+        {(displayTheme === "masjid" || theme === "masjid") && <MasjidBackground />}
       </div>
 
       {/* Blood red ambient glow */}

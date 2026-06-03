@@ -27,6 +27,7 @@ export function ThemedPageWrapper({ children }: ThemedPageWrapperProps) {
     nightcity: "bg-zinc-950",
     gothic:    "bg-slate-950",
     vintage:   "bg-amber-950",
+    masjid:    "bg-blue-950",
   }
 
   return (
