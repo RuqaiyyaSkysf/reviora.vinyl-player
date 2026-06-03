@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { PlaylistMergeModal } from "./playlist-merge-modal"
 import { CollapsibleMenu } from "./collapsible-menu"
 import { GalleryPanel } from "./gallery-panel"
+import { GalleryFullModal } from "./gallery-full-modal"
 
 const themes: { id: Theme; name: string; description: string; colors: string }[] = [
   {
@@ -117,6 +118,8 @@ export function ThemeMenu() {
   const [showLyricsOptions, setShowLyricsOptions] = useState(false)
   const [showArtworkOptions, setShowArtworkOptions] = useState(false)
   const [showGalleryPanel, setShowGalleryPanel] = useState(false)
+  const [showGalleryFullModal, setShowGalleryFullModal] = useState(false)
+  const [pendingArtwork, setPendingArtwork] = useState<string | null>(null)
   const [showMergeModal, setShowMergeModal] = useState(false)
   const [galleryError, setGalleryError] = useState<string | null>(null)
   const [pendingFolderTracks, setPendingFolderTracks] = useState<Track[]>([])
@@ -334,15 +337,24 @@ export function ThemeMenu() {
       const reader = new FileReader()
       reader.onload = (event) => {
         const dataUrl = event.target?.result as string
-        const result = addCover(dataUrl)
         
-        if (!result.success) {
-          setGalleryError(result.message || 'Failed to add cover')
-          setTimeout(() => setGalleryError(null), 5000)
+        // Immediately apply artwork to vinyl
+        setTrackArtwork(dataUrl)
+        
+        // Check if gallery is full
+        if (covers.length >= 15) {
+          // Store artwork for potential saving later
+          setPendingArtwork(dataUrl)
+          setShowGalleryFullModal(true)
         } else {
-          setTrackArtwork(dataUrl)
-          console.log("[v0] Artwork uploaded and saved to gallery")
+          // Gallery has space, save immediately
+          const result = addCover(dataUrl)
+          if (result.success) {
+            console.log("[v0] Artwork uploaded and saved to gallery")
+          }
         }
+        
+        setShowArtworkOptions(false)
       }
       reader.readAsDataURL(file)
     }
@@ -350,6 +362,18 @@ export function ThemeMenu() {
       artworkInputRef.current.value = ""
     }
     setIsOpen(false)
+  }
+
+  const handleUseWithoutSaving = () => {
+    // Artwork is already applied, just clear the pending state
+    setPendingArtwork(null)
+  }
+
+  const handleOpenGallery = () => {
+    // When user opens gallery from the full modal, we'll save pending artwork
+    // after they delete an item (space becomes available)
+    // The pending artwork is stored and will be attempted to save when gallery closes
+    setShowGalleryPanel(true)
   }
 
   return (
@@ -823,7 +847,32 @@ export function ThemeMenu() {
         </>
       )}
 
-      {showGalleryPanel && <GalleryPanel onClose={() => setShowGalleryPanel(false)} />}
+      {showGalleryPanel && (
+        <GalleryPanel
+          onClose={() => {
+            setShowGalleryPanel(false)
+            // If there's pending artwork and gallery now has space, save it
+            if (pendingArtwork && covers.length < 15) {
+              const result = addCover(pendingArtwork)
+              if (result.success) {
+                console.log("[v0] Pending artwork saved to gallery after deletion")
+              }
+              setPendingArtwork(null)
+            }
+          }}
+        />
+      )}
+
+      <GalleryFullModal
+        isOpen={showGalleryFullModal}
+        onClose={() => {
+          setShowGalleryFullModal(false)
+          setPendingArtwork(null)
+        }}
+        onUseWithoutSaving={handleUseWithoutSaving}
+        onOpenGallery={handleOpenGallery}
+        theme={theme}
+      />
 
       <PlaylistMergeModal
         isOpen={showMergeModal}
