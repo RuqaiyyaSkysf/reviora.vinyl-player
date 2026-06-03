@@ -35,10 +35,15 @@ export function GalleryPanel({ onClose }: GalleryPanelProps) {
             <X size={20} className="text-white" />
           </button>
           <h2 className="text-xl font-bold text-white mb-4">Album Cover Gallery</h2>
-          <p className="text-white/70 text-sm">No album covers saved yet. Upload an artwork to get started!</p>
+          <p className="text-white/70 text-sm">No album covers saved yet. Upload artwork to get started.</p>
         </div>
       </div>
     )
+  }
+
+  // Only render gallery if covers exist to prevent flashing empty state
+  if (!covers || covers.length === 0) {
+    return null
   }
 
   return (
@@ -111,7 +116,7 @@ export function GalleryPanel({ onClose }: GalleryPanelProps) {
 
         {/* Counter */}
         <div className="mt-4 text-center text-white/70 text-sm">
-          {covers.length} / 15 album covers
+          {covers.length} / 25 album covers
         </div>
       </div>
     </div>

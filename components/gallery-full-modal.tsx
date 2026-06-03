@@ -101,7 +101,7 @@ export function GalleryFullModal({
 
         {/* Message */}
         <p className={cn('text-sm mb-6 leading-relaxed', textColors[theme])}>
-          Your Artwork Gallery has reached the 15-image limit.
+          Your Artwork Gallery has reached the 25-image limit.
         </p>
         <p
           className={cn(

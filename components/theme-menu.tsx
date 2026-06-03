@@ -341,8 +341,8 @@ export function ThemeMenu() {
         // Immediately apply artwork to vinyl
         setTrackArtwork(dataUrl)
         
-        // Check if gallery is full
-        if (covers.length >= 15) {
+        // Check if gallery is full (25 limit)
+        if (covers.length >= 25) {
           // Store artwork for potential saving later
           setPendingArtwork(dataUrl)
           setShowGalleryFullModal(true)
@@ -350,7 +350,7 @@ export function ThemeMenu() {
           // Gallery has space, save immediately
           const result = addCover(dataUrl)
           if (result.success) {
-            console.log("[v0] Artwork uploaded and saved to gallery")
+            // Artwork saved successfully
           }
         }
         
@@ -851,13 +851,15 @@ export function ThemeMenu() {
         <GalleryPanel
           onClose={() => {
             setShowGalleryPanel(false)
-            // If there's pending artwork and gallery now has space, save it
-            if (pendingArtwork && covers.length < 15) {
+            // If there's pending artwork and gallery now has space, save it and apply it
+            if (pendingArtwork && covers.length < 25) {
               const result = addCover(pendingArtwork)
               if (result.success) {
-                console.log("[v0] Pending artwork saved to gallery after deletion")
+                // Pending artwork already applied, just mark workflow complete
+                setPendingArtwork(null)
+                // Close the full modal if it's open
+                setShowGalleryFullModal(false)
               }
-              setPendingArtwork(null)
             }
           }}
         />

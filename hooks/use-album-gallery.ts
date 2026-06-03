@@ -9,7 +9,7 @@ export interface SavedAlbumCover {
 }
 
 const STORAGE_KEY = 'reviora_album_covers'
-const MAX_COVERS = 15
+const MAX_COVERS = 25
 
 export function useAlbumGallery() {
   const [covers, setCoverState] = useState<SavedAlbumCover[]>([])
