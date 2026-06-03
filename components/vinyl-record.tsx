@@ -295,15 +295,6 @@ export function VinylRecord() {
       progressGlow: "rgba(180,130,60,0.7)",
       innerShadow: "shadow-[inset_0_0_60px_rgba(0,0,0,0.7)]",
     },
-    masjid: {
-      vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-blue-400/20",
-      label: "bg-gradient-to-br from-blue-600 to-blue-900",
-      glow: "rgba(59,130,246,0.35)",
-      progressRing: "rgba(147,197,253,1)",
-      progressGlow: "rgba(59,130,246,0.7)",
-      innerShadow: "shadow-[inset_0_0_60px_rgba(0,0,0,0.7)]",
-    },
   }
 
   const styles = themeStyles[theme]
