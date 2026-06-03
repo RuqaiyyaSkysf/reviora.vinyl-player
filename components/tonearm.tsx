@@ -153,14 +153,14 @@ export function Tonearm() {
       shadow: "rgba(180,130,60,0.4)",
     },
     masjid: {
-      arm: "from-green-300 via-green-400 to-emerald-500",
-      armHighlight: "rgba(16,185,129,0.3)",
-      base: "from-green-700 to-emerald-800",
-      baseHighlight: "from-green-600 to-green-700",
-      head: "from-green-200 to-emerald-300",
-      needle: "from-green-300 to-emerald-500",
-      needleGlow: "rgba(16,185,129,0.7)",
-      shadow: "rgba(16,185,129,0.4)",
+      arm: "from-gray-300 via-gray-400 to-gray-500",
+      armHighlight: "rgba(229,231,235,0.3)",
+      base: "from-gray-700 to-gray-800",
+      baseHighlight: "from-gray-600 to-gray-700",
+      head: "from-gray-200 to-gray-400",
+      needle: "from-gray-100 to-gray-300",
+      needleGlow: "rgba(229,231,235,0.5)",
+      shadow: "rgba(0,0,0,0.5)",
     },
   }
 
