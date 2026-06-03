@@ -152,6 +152,16 @@ export function Tonearm() {
       needleGlow: "rgba(251,191,36,0.7)",
       shadow: "rgba(180,130,60,0.4)",
     },
+    masjid: {
+      arm: "from-green-300 via-green-400 to-emerald-500",
+      armHighlight: "rgba(16,185,129,0.3)",
+      base: "from-green-700 to-emerald-800",
+      baseHighlight: "from-green-600 to-green-700",
+      head: "from-green-200 to-emerald-300",
+      needle: "from-green-300 to-emerald-500",
+      needleGlow: "rgba(16,185,129,0.7)",
+      shadow: "rgba(16,185,129,0.4)",
+    },
   }
 
   const colors = themeColors[theme]
