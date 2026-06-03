@@ -2,14 +2,26 @@
 
 import { usePlayer } from "@/contexts/player-context"
 import { cn } from "@/lib/utils"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 export function Tonearm() {
-  const { isPlaying, theme, currentTime, duration } = usePlayer()
+  const { isPlaying, theme, currentTime, duration, play, pause } = usePlayer()
   const [armAngle, setArmAngle] = useState(-45)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
   const progress = duration > 0 ? currentTime / duration : 0
+
+  // Handle tonearm click to toggle play/pause
+  const handleTonearmClick = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    
+    if (isPlaying) {
+      pause()
+    } else {
+      play()
+    }
+  }, [isPlaying, play, pause])
 
   // Smooth tonearm movement with easing
   useEffect(() => {
@@ -145,7 +157,14 @@ export function Tonearm() {
   const colors = themeColors[theme]
 
   return (
-    <div className="absolute right-0 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-10">
+    <div 
+      className="absolute right-0 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
+      onClick={handleTonearmClick}
+      onTouchEnd={handleTonearmClick}
+      role="button"
+      tabIndex={0}
+      aria-label={isPlaying ? "Pause with vinyl arm" : "Play with vinyl arm"}
+    >
       {/* Base mount shadow */}
       <div
         className="absolute top-2 left-2 w-10 h-10 rounded-full blur-md"
