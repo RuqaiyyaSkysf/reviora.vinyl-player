@@ -314,13 +314,13 @@ export function ThemeMenu() {
   }
 
   const handleReplacePlaylist = () => {
-    // Clear existing queue and load new playlist
-    clearQueue()
+    // Replace the entire queue with pending tracks
     if (pendingFolderTracks.length > 0) {
-      playTrack(pendingFolderTracks[0])
-      pendingFolderTracks.slice(1).forEach((track) => {
-        addToQueue(track)
-      })
+      setQueue(pendingFolderTracks, 0)
+      // Ensure playback starts on first track
+      if (pendingFolderTracks[0].url) {
+        playTrack(pendingFolderTracks[0])
+      }
     }
     setPendingFolderTracks([])
     setShowMergeModal(false)

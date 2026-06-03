@@ -8,7 +8,7 @@ import { extractAudioMetadata } from "@/lib/audio-metadata"
 import { PlaylistMergeModal } from "./playlist-merge-modal"
 
 export function HomepageUpload() {
-  const { theme, playTrack, addToQueue, queue } = usePlayer()
+  const { theme, playTrack, addToQueue, setQueue, queue } = usePlayer()
   const audioInputRef = useRef<HTMLInputElement>(null)
   const folderInputRef = useRef<HTMLInputElement>(null)
   const [showMergeModal, setShowMergeModal] = useState(false)
@@ -145,10 +145,12 @@ export function HomepageUpload() {
 
   const handleReplacePlaylist = () => {
     if (pendingFolderTracks.length > 0) {
-      playTrack(pendingFolderTracks[0])
-      pendingFolderTracks.slice(1).forEach((track) => {
-        addToQueue(track)
-      })
+      // Replace the entire queue with pending tracks
+      setQueue(pendingFolderTracks, 0)
+      // Ensure playback starts on first track
+      if (pendingFolderTracks[0].url) {
+        playTrack(pendingFolderTracks[0])
+      }
     }
     setPendingFolderTracks([])
     setShowMergeModal(false)

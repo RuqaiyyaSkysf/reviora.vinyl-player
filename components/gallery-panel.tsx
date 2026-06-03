@@ -11,15 +11,15 @@ interface GalleryPanelProps {
 
 export function GalleryPanel({ onClose }: GalleryPanelProps) {
   const { theme, setTrackArtwork } = usePlayer()
-  const { covers, removeCover } = useAlbumGallery()
+  const { covers, removeCover, isLoaded } = useAlbumGallery()
 
   const handleCoverClick = (imageData: string) => {
     setTrackArtwork(imageData)
     onClose()
   }
 
-  // Don't render anything if gallery is empty
-  if (!covers || covers.length === 0) {
+  // Show empty message only when data is loaded AND gallery is empty
+  if (isLoaded && covers.length === 0) {
     return (
       <div className={cn(
         'fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50'
@@ -40,6 +40,11 @@ export function GalleryPanel({ onClose }: GalleryPanelProps) {
         </div>
       </div>
     )
+  }
+
+  // Don't render gallery until data is loaded
+  if (!isLoaded || covers.length === 0) {
+    return null
   }
 
   return (
