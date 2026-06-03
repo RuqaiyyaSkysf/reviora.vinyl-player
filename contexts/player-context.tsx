@@ -89,8 +89,11 @@ interface PlayerContextType {
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined)
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("black")
-  const [viewMode, setViewMode] = useState<ViewMode>("vinyl-only")
+  // Initialize theme and viewMode from localStorage with defaults
+  const [theme, setThemeState] = useState<Theme>("black")
+  const [viewMode, setViewModeState] = useState<ViewMode>("vinyl-only")
+  const [isInitialized, setIsInitialized] = useState(false)
+  
   const [vinylStyle, setVinylStyle] = useState<VinylStyle>("vinyl-blurred")
   const [vinylSize, setVinylSize] = useState(100) // Percentage
   const [isPlaying, setIsPlaying] = useState(false)
@@ -106,6 +109,46 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const [vinylPlayerOffset, setVinylPlayerOffset] = useState(0) // Horizontal vinyl player offset in pixels
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  // Initialize theme and viewMode from localStorage on component mount
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    
+    try {
+      const savedTheme = localStorage.getItem("vinyl-player-theme") as Theme | null
+      const savedViewMode = localStorage.getItem("vinyl-player-view-mode") as ViewMode | null
+      
+      if (savedTheme) {
+        setThemeState(savedTheme)
+      }
+      if (savedViewMode) {
+        setViewModeState(savedViewMode)
+      }
+    } catch (error) {
+      console.log("[v0] Failed to load persisted settings:", error)
+    }
+    
+    setIsInitialized(true)
+  }, [])
+
+  // Wrapper functions that save to localStorage when theme or viewMode changes
+  const setTheme = (theme: Theme) => {
+    setThemeState(theme)
+    try {
+      localStorage.setItem("vinyl-player-theme", theme)
+    } catch (error) {
+      console.log("[v0] Failed to save theme:", error)
+    }
+  }
+
+  const setViewMode = (mode: ViewMode) => {
+    setViewModeState(mode)
+    try {
+      localStorage.setItem("vinyl-player-view-mode", mode)
+    } catch (error) {
+      console.log("[v0] Failed to save view mode:", error)
+    }
+  }
 
   // Update current lyric based on time
   useEffect(() => {
