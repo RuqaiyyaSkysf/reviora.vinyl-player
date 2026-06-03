@@ -143,6 +143,29 @@ export function HelpOverlay() {
                   <p className="text-center text-lg">🖤🖤🖤</p>
                 </div>
               </div>
+
+              {/* Divider */}
+              <div className="border-t border-white/10" />
+
+              {/* Section 4 */}
+              <div>
+                <h2 className="text-lg font-semibold text-white mb-4">📱 Mobile Experience</h2>
+                <div className="space-y-3 text-white/80 text-sm leading-relaxed">
+                  <p>• For the best experience on phones, enable Desktop Site/Desktop Mode in your browser.</p>
+                  <p>• Full View and Vinyl + Lyrics layouts usually provide the closest experience to the desktop version of Reviora.</p>
+                  <p>• If the layout feels too large or too small on your device, experiment with your browser&apos;s zoom settings if available.</p>
+                  <p>• You can further customize the experience using the player controls:</p>
+                  <div className="ml-4 space-y-2">
+                    <p>  * Move Vinyl Player</p>
+                    <p>  * Move Lyrics Panel</p>
+                    <p>  * Resize Vinyl</p>
+                    <p>  * Change Layouts</p>
+                    <p>  * Change Themes</p>
+                  </div>
+                  <p>• Reviora was designed to be flexible and customizable, so feel free to experiment until the setup feels perfect for your screen and aesthetic.</p>
+                  <p>• If you&apos;re using a phone and want the most immersive experience, Desktop Mode is recommended.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
