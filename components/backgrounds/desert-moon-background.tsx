@@ -39,7 +39,7 @@ export function DesertMoonBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Main rainy forest background - darker, more atmospheric */}
+      {/* Main rainy forest background - clear and realistic */}
       <div
         className="absolute inset-0"
         style={{
@@ -47,23 +47,23 @@ export function DesertMoonBackground() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          imageRendering: "high-quality",
-          filter: "brightness(0.75) contrast(1.2) saturate(1.1) hue-rotate(-5deg)",
+          imageRendering: "auto",
+          filter: "brightness(0.85) contrast(1.05) saturate(0.95)",
           transform: `translate(${parallax.x}px, ${parallax.y}px)`,
           transition: "transform 0.1s ease-out",
         }}
       />
 
-      {/* Dark atmospheric fog layers - realistic depth */}
+      {/* Atmospheric fog layers - subtle, natural depth */}
       {fogLayers.map((layer) => (
         <div
           key={layer.id}
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `linear-gradient(180deg, rgba(60,80,60,${layer.opacity * 0.5}) 0%, rgba(50,70,50,${layer.opacity * 0.4}) 50%, rgba(40,60,40,${layer.opacity * 0.6}) 100%)`,
+            background: `linear-gradient(180deg, rgba(60,80,60,${layer.opacity * 0.2}) 0%, rgba(50,70,50,${layer.opacity * 0.15}) 50%, rgba(40,60,40,${layer.opacity * 0.25}) 100%)`,
             animation: `drift-fog ${layer.speed * 12}s linear infinite`,
             animationDelay: `${layer.id * 1.5}s`,
-            opacity: 0.7,
+            opacity: 0.4,
           }}
         />
       ))}
@@ -86,11 +86,11 @@ export function DesertMoonBackground() {
         />
       ))}
 
-      {/* Ambient mist - creates moody atmospheric depth */}
+      {/* Ambient mist - subtle, natural atmospheric effect */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at 50% 40%, rgba(80,100,80,0.25) 0%, rgba(40,50,40,0.1) 50%, transparent 100%)",
+          background: "radial-gradient(ellipse at 50% 40%, rgba(80,100,80,0.08) 0%, rgba(40,50,40,0.03) 50%, transparent 100%)",
           animation: "pulse-mist 10s ease-in-out infinite",
         }}
       />
@@ -99,30 +99,7 @@ export function DesertMoonBackground() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 25%, rgba(0,0,0,0.4) 100%)",
-        }}
-      />
-
-      {/* Subtle wet surface effect - moisture and rain */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 3px,
-              rgba(100,120,100,0.08) 3px,
-              rgba(100,120,100,0.08) 6px
-            ),
-            repeating-linear-gradient(
-              180deg,
-              transparent,
-              transparent 2px,
-              rgba(80,100,80,0.06) 2px,
-              rgba(80,100,80,0.06) 3px
-            )
-          `,
+          background: "radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.2) 100%)",
         }}
       />
 
