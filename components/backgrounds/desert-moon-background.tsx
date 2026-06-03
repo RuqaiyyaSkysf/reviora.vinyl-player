@@ -30,10 +30,10 @@ export function DesertMoonBackground() {
     return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
-  // Generate random fog layers at different depths
-  const fogLayers = Array.from({ length: 5 }, (_, i) => ({
+  // Generate random fog layers at different depths - more subtle
+  const fogLayers = Array.from({ length: 3 }, (_, i) => ({
     id: i,
-    opacity: 0.2 + (i * 0.12),
+    opacity: 0.08 + (i * 0.05),
     speed: 4 + i * 2,
   }))
 
@@ -54,52 +54,52 @@ export function DesertMoonBackground() {
         }}
       />
 
-      {/* Atmospheric fog layers - subtle, natural depth */}
+      {/* Atmospheric fog layers - minimal, subtle depth enhancement */}
       {fogLayers.map((layer) => (
         <div
           key={layer.id}
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `linear-gradient(180deg, rgba(60,80,60,${layer.opacity * 0.2}) 0%, rgba(50,70,50,${layer.opacity * 0.15}) 50%, rgba(40,60,40,${layer.opacity * 0.25}) 100%)`,
+            background: `linear-gradient(180deg, rgba(60,80,60,${layer.opacity * 0.08}) 0%, rgba(50,70,50,${layer.opacity * 0.06}) 50%, rgba(40,60,40,${layer.opacity * 0.1}) 100%)`,
             animation: `drift-fog ${layer.speed * 12}s linear infinite`,
             animationDelay: `${layer.id * 1.5}s`,
-            opacity: 0.4,
+            opacity: 0.15,
           }}
         />
       ))}
 
-      {/* Rain/moisture particles - soft drizzle with enhanced visibility */}
+      {/* Rain/moisture particles - minimal, barely visible drizzle */}
       {particles.map((particle) => (
         <div
           key={particle.id}
           className="absolute rounded-full pointer-events-none"
           style={{
-            width: "0.8px",
-            height: "10px",
+            width: "0.6px",
+            height: "8px",
             left: particle.left,
             top: "-10px",
-            background: "linear-gradient(180deg, rgba(150,160,150,0.7) 0%, rgba(120,130,120,0) 100%)",
-            boxShadow: "0 0 3px rgba(140,150,140,0.5)",
+            background: "linear-gradient(180deg, rgba(150,160,150,0.25) 0%, rgba(120,130,120,0) 100%)",
+            boxShadow: "0 0 1px rgba(140,150,140,0.15)",
             animation: `rain-fall ${particle.duration}s linear infinite`,
             animationDelay: `${particle.delay}s`,
           }}
         />
       ))}
 
-      {/* Ambient mist - subtle, natural atmospheric effect */}
+      {/* Ambient mist - very subtle atmospheric shimmer */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at 50% 40%, rgba(80,100,80,0.08) 0%, rgba(40,50,40,0.03) 50%, transparent 100%)",
+          background: "radial-gradient(ellipse at 50% 40%, rgba(80,100,80,0.02) 0%, rgba(40,50,40,0.01) 50%, transparent 100%)",
           animation: "pulse-mist 10s ease-in-out infinite",
         }}
       />
 
-      {/* Dark shadow vignette - premium focus effect */}
+      {/* Subtle shadow vignette - minimal focus effect */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.2) 100%)",
+          background: "radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.08) 100%)",
         }}
       />
 
