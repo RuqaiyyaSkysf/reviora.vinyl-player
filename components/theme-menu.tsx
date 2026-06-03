@@ -561,7 +561,7 @@ export function ThemeMenu() {
                         )}
                       >
                         <Image className="w-4 h-4" />
-                        Album Cover Gallery {covers.length > 0 && `(${covers.length}/15)`}
+                        Album Cover Gallery {covers.length > 0 && `(${covers.length}/25)`}
                       </button>
                       {currentTrack?.albumArt && (
                         <button

@@ -182,7 +182,7 @@ export function RecentAlbumGallery() {
             Recent Album Covers
           </h3>
           <span className={cn('text-xs px-2 py-1 rounded-full', styles.buttonBg, styles.buttonText)}>
-            {covers.length}/15
+            {covers.length}/25
           </span>
         </div>
         {covers.length > 4 && (

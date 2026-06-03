@@ -18,7 +18,8 @@ export function GalleryPanel({ onClose }: GalleryPanelProps) {
     onClose()
   }
 
-  if (covers.length === 0) {
+  // Don't render anything if gallery is empty
+  if (!covers || covers.length === 0) {
     return (
       <div className={cn(
         'fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50'
@@ -39,11 +40,6 @@ export function GalleryPanel({ onClose }: GalleryPanelProps) {
         </div>
       </div>
     )
-  }
-
-  // Only render gallery if covers exist to prevent flashing empty state
-  if (!covers || covers.length === 0) {
-    return null
   }
 
   return (
