@@ -129,26 +129,6 @@ export function HelpOverlay() {
 
               {/* Section 3 */}
               <div>
-                <h2 className="text-lg font-semibold text-white mb-4">Why I Made This</h2>
-                <div className="space-y-3 text-white/80 text-sm leading-relaxed">
-                  <p>• I made this completely free because I always wanted a player like this myself.</p>
-                  <p>• As an artistic, aesthetic, creative girl, I downloaded so many apps filled with ads, restrictions, and subscriptions.</p>
-                  <p>• So I did what a usual tech girlie would do:</p>
-                  <p className="ml-4">  I built my own.</p>
-                  <p>• I originally thought about Spotify integration, but I ultimately chose a more personal offline-style experience for this player.</p>
-                  <p>• Thank you for being here and using something I created with love 🖤</p>
-                  <p>• If you&apos;d like to support my free work:</p>
-                  <p className="ml-4">  follow me on Instagram and subscribe on YouTube :)</p>
-                  <p className="pt-2">xoxo byeee... enjoy the player!!</p>
-                  <p className="text-center text-lg">🖤🖤🖤</p>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="border-t border-white/10" />
-
-              {/* Section 4 */}
-              <div>
                 <h2 className="text-lg font-semibold text-white mb-4">📱 Mobile Experience</h2>
                 <div className="space-y-3 text-white/80 text-sm leading-relaxed">
                   <p>• For the best experience on phones, enable Desktop Site/Desktop Mode in your browser.</p>
@@ -164,6 +144,26 @@ export function HelpOverlay() {
                   </div>
                   <p>• Reviora was designed to be flexible and customizable, so feel free to experiment until the setup feels perfect for your screen and aesthetic.</p>
                   <p>• If you&apos;re using a phone and want the most immersive experience, Desktop Mode is recommended.</p>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-white/10" />
+
+              {/* Section 4 */}
+              <div>
+                <h2 className="text-lg font-semibold text-white mb-4">Why I Made This</h2>
+                <div className="space-y-3 text-white/80 text-sm leading-relaxed">
+                  <p>• I made this completely free because I always wanted a player like this myself.</p>
+                  <p>• As an artistic, aesthetic, creative girl, I downloaded so many apps filled with ads, restrictions, and subscriptions.</p>
+                  <p>• So I did what a usual tech girlie would do:</p>
+                  <p className="ml-4">  I built my own.</p>
+                  <p>• I originally thought about Spotify integration, but I ultimately chose a more personal offline-style experience for this player.</p>
+                  <p>• Thank you for being here and using something I created with love 🖤</p>
+                  <p>• If you&apos;d like to support my free work:</p>
+                  <p className="ml-4">  follow me on Instagram and subscribe on YouTube :)</p>
+                  <p className="pt-2">xoxo byeee... enjoy the player!!</p>
+                  <p className="text-center text-lg">🖤🖤🖤</p>
                 </div>
               </div>
             </div>
