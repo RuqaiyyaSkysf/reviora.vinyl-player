@@ -36,10 +36,32 @@ export function useAlbumGallery() {
   // Save covers to localStorage whenever they change
   useEffect(() => {
     if (!isLoaded) return
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(covers))
-    } catch (error) {
-      console.log('[v0] Failed to save album covers:', error)
+    
+    const saveCovers = (coversToSave: SavedAlbumCover[]) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(coversToSave))
+        return true
+      } catch (error: any) {
+        if (error.name === 'QuotaExceededError') {
+          console.log('[v0] localStorage quota exceeded')
+          return false
+        }
+        console.log('[v0] Failed to save album covers:', error)
+        return false
+      }
+    }
+    
+    // Try to save the current covers
+    if (!saveCovers(covers)) {
+      // If save failed and we have more than 1 cover, remove oldest and retry
+      if (covers.length > 1) {
+        console.log('[v0] Attempting to save by removing oldest cover')
+        setCoverState((prev) => {
+          const trimmed = prev.slice(1)
+          saveCovers(trimmed)
+          return trimmed
+        })
+      }
     }
   }, [covers, isLoaded])
 
