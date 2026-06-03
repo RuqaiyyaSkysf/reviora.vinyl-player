@@ -297,7 +297,7 @@ export function VinylRecord() {
     },
   }
 
-  const styles = themeStyles[theme]
+  const styles = themeStyles[theme] || themeStyles.black
 
   // Calculate SVG progress ring
   const ringRadius = 52
