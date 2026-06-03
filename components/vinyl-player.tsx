@@ -116,6 +116,11 @@ export function VinylPlayer() {
       gradient: "bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.15)_0%,transparent_50%)]",
       overlay: "before:absolute before:inset-0 before:bg-blue-950 before:-z-10",
     },
+    "desert-moon": {
+      bg: "bg-slate-950",
+      gradient: "bg-[radial-gradient(ellipse_at_top,rgba(100,120,160,0.15)_0%,transparent_50%)]",
+      overlay: "before:absolute before:inset-0 before:bg-slate-950 before:-z-10",
+    },
   }
 
   const styles = themeStyles[theme]
