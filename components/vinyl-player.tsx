@@ -117,9 +117,9 @@ export function VinylPlayer() {
       overlay: "before:absolute before:inset-0 before:bg-blue-950 before:-z-10",
     },
     "desert-moon": {
-      bg: "bg-slate-950",
-      gradient: "bg-[radial-gradient(ellipse_at_top,rgba(100,120,160,0.15)_0%,transparent_50%)]",
-      overlay: "before:absolute before:inset-0 before:bg-slate-950 before:-z-10",
+      bg: "bg-slate-900",
+      gradient: "bg-[radial-gradient(ellipse_at_top,rgba(78,113,91,0.12)_0%,transparent_50%)]",
+      overlay: "before:absolute before:inset-0 before:bg-slate-900 before:-z-10",
     },
   }
 
@@ -145,7 +145,7 @@ export function VinylPlayer() {
       case "masjid":
         return "bg-blue-950/50 shadow-[0_20px_60px_-15px_rgba(59,130,246,0.2)] backdrop-blur-sm border border-blue-400/20"
       case "desert-moon":
-        return "bg-slate-950/50 shadow-[0_20px_60px_-15px_rgba(100,120,160,0.2)] backdrop-blur-sm border border-slate-600/20"
+        return "bg-slate-900/50 shadow-[0_20px_60px_-15px_rgba(78,113,91,0.15)] backdrop-blur-sm border border-slate-700/30"
       default:
         return "bg-zinc-900/50 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] backdrop-blur-sm"
     }

@@ -79,9 +79,9 @@ const themes: { id: Theme; name: string; description: string; colors: string }[]
   },
   {
     id: "desert-moon",
-    name: "Desert Moon",
-    description: "Moonlit desert, camels under stars",
-    colors: "bg-gradient-to-b from-blue-950 via-slate-950 to-slate-900",
+    name: "Rainy Mood",
+    description: "Calm rainy forest, foggy atmosphere",
+    colors: "bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950",
   },
 ]
 
@@ -153,7 +153,7 @@ export function ThemeMenu() {
     gothic: "text-purple-300 hover:text-purple-100 hover:bg-purple-950/50",
     vintage: "text-amber-300 hover:text-amber-100 hover:bg-amber-900/50",
     masjid: "text-blue-300 hover:text-blue-100 hover:bg-blue-900/50",
-    "desert-moon": "text-blue-300 hover:text-cyan-200 hover:bg-blue-900/50",
+    "desert-moon": "text-green-300 hover:text-green-100 hover:bg-green-900/50",
   }
 
   const menuStyles: Record<Theme, string> = {

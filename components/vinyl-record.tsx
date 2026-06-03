@@ -306,11 +306,11 @@ export function VinylRecord() {
     },
     "desert-moon": {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-blue-400/10",
-      label: "bg-gradient-to-br from-blue-200 to-blue-300",
-      glow: "rgba(147,197,253,0.3)",
-      progressRing: "rgba(147,197,253,0.9)",
-      progressGlow: "rgba(147,197,253,0.6)",
+      grooves: "border-green-600/15",
+      label: "bg-gradient-to-br from-green-100 to-green-200",
+      glow: "rgba(132,204,22,0.25)",
+      progressRing: "rgba(132,204,22,0.85)",
+      progressGlow: "rgba(132,204,22,0.55)",
       innerShadow: "shadow-[inset_0_0_60px_rgba(0,0,0,0.7)]",
     },
   }

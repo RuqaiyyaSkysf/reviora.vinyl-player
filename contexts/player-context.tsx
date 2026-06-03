@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useRef, useEffect, type ReactNode } from "react"
 
-export type Theme = "black" | "pink" | "coding" | "maroon" | "galaxy" | "flame" | "blood" | "nightcity" | "gothic" | "vintage" | "masjid" | "desert-moon"
+export type Theme = "black" | "pink" | "coding" | "maroon" | "galaxy" | "flame" | "blood" | "nightcity" | "gothic" | "vintage" | "masjid" | "rainy-mood"
 
 export type ViewMode = "vinyl-only" | "vinyl-lyrics" | "vinyl-playlist" | "vinyl-playlist-lyrics"
 
