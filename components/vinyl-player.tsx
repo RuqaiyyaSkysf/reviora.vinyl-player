@@ -15,6 +15,7 @@ import { PlaylistPanel } from "./playlist-panel"
 import { MinimalVinylView } from "./minimal-vinyl-view"
 import { VinylLyricsView } from "./vinyl-lyrics-view"
 import { VinylContainer } from "./vinyl-container"
+import { RecentAlbumGallery } from "./recent-album-gallery"
 import { GalaxyBackground } from "./backgrounds/galaxy-background"
 import { FlameBackground } from "./backgrounds/flame-background"
 import { PinkBackground } from "./backgrounds/pink-background"
@@ -354,6 +355,13 @@ export function VinylPlayer() {
           {!currentTrack && queue.length === 0 && (
             <div className="w-full">
               <HomepageUpload />
+            </div>
+          )}
+
+          {/* Recent Album Gallery (always visible when sidebar is open) */}
+          {(!currentTrack || viewMode !== "vinyl-only") && (
+            <div className="w-full">
+              <RecentAlbumGallery />
             </div>
           )}
 

@@ -3,6 +3,7 @@
 import { useState, useRef } from "react"
 import { MoreHorizontal, Check, Disc, MessageSquareText, ListMusic, LayoutGrid, Music, Image, Upload, X, Plus, Minus, FolderOpen } from "lucide-react"
 import { usePlayer, type Theme, type ViewMode, type VinylStyle, type Track } from "@/contexts/player-context"
+import { useAlbumGallery } from "@/hooks/use-album-gallery"
 import { cn } from "@/lib/utils"
 import { PlaylistMergeModal } from "./playlist-merge-modal"
 
@@ -118,6 +119,7 @@ export function ThemeMenu() {
   const artworkInputRef = useRef<HTMLInputElement>(null)
   const folderInputRef = useRef<HTMLInputElement>(null)
   const { theme, setTheme, viewMode, setViewMode, currentTrack, addToQueue, playTrack, setTrackArtwork, queue, setQueue, clearQueue, vinylStyle, setVinylStyle, vinylSize, setVinylSize, lyricsPanelOffset, setLyricsPanelOffset, vinylPlayerOffset, setVinylPlayerOffset } = usePlayer()
+  const { addCover } = useAlbumGallery()
 
   const themeButtonStyles: Record<Theme, string> = {
     black: "text-zinc-400 hover:text-white hover:bg-zinc-800",
@@ -324,9 +326,14 @@ export function ThemeMenu() {
   const handleUploadArtwork = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file && currentTrack) {
-      const url = URL.createObjectURL(file)
-      setTrackArtwork(url)
-      console.log("[v0] Artwork uploaded:", url)
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        const dataUrl = event.target?.result as string
+        setTrackArtwork(dataUrl)
+        addCover(dataUrl)
+        console.log("[v0] Artwork uploaded and saved to gallery")
+      }
+      reader.readAsDataURL(file)
     }
     if (artworkInputRef.current) {
       artworkInputRef.current.value = ""

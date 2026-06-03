@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from "react"
 import { Upload, Music, FileText, X, Type } from "lucide-react"
 import { usePlayer, type Track, type LyricLine } from "@/contexts/player-context"
+import { useAlbumGallery } from "@/hooks/use-album-gallery"
 import { cn } from "@/lib/utils"
 import { extractAudioMetadata } from "@/lib/audio-metadata"
 
@@ -37,6 +38,7 @@ function parseTXT(content: string): LyricLine[] {
 
 export function MP3Upload() {
   const { theme, addToQueue, queue, currentTrack, setTrackLyrics, setTrackArtwork } = usePlayer()
+  const { addCover } = useAlbumGallery()
   const [isDragging, setIsDragging] = useState(false)
   const [pendingTrack, setPendingTrack] = useState<Track | null>(null)
   const [pastedLyrics, setPastedLyrics] = useState("")
@@ -177,12 +179,13 @@ export function MP3Upload() {
       // Always use addToQueue for consistency — it handles playback and persistence
       addToQueue(track)
       
-      // If artwork was extracted, update it in the context
+      // If artwork was extracted, update it in the context and save to gallery
       if (track.albumArt) {
         setTrackArtwork(track.albumArt)
+        addCover(track.albumArt)
       }
     },
-    [addToQueue, setTrackArtwork]
+    [addToQueue, setTrackArtwork, addCover]
   )
 
   const handleDrop = useCallback(

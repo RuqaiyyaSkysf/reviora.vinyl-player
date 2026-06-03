@@ -77,6 +77,7 @@ interface PlayerContextType {
   clearQueue: () => void
   setTrackLyrics: (lyrics: LyricLine[], lyricsType?: "lrc" | "plain") => void
   setTrackArtwork: (artworkUrl: string | null) => void
+  onArtworkSet?: (artworkUrl: string) => void
 
   // Audio ref for external access
   audioRef: React.RefObject<HTMLAudioElement | null>
