@@ -51,7 +51,7 @@ export function SupportPrompt({
     return () => {
       if (interval) clearInterval(interval)
     }
-  }, [isDismissedForSession])
+  }, [isDismissedForSession, isVisible])
 
   const handleFollowInstagram = () => {
     track("support_popup_instagram_click")
