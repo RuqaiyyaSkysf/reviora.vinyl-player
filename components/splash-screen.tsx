@@ -10,7 +10,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    // Auto-dismiss after 3.2 seconds (allowing animation to complete)
+    // Auto-dismiss after 3.2 seconds (logo animation: 0.5s + 0.5s + 0.4s + text: 0.8s + hold: 1s - slight overlap)
     const timer = setTimeout(() => {
       setIsVisible(false)
       onComplete()
@@ -23,51 +23,62 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-      {/* Main logo and text container */}
-      <div className="flex flex-col items-center justify-center gap-8">
-        {/* SVG Logo with animated sections */}
+      <div className="flex flex-col items-center justify-center gap-12">
+        {/* SVG Logo with exact Reviora contours */}
         <svg
-          width="280"
-          height="280"
-          viewBox="0 0 280 280"
-          className="drop-shadow-[0_0_40px_rgba(139,92,246,0.4)]"
-          style={{
-            filter: "drop-shadow(0 0 40px rgba(139,92,246,0.2))",
-          }}
+          width="320"
+          height="320"
+          viewBox="0 0 320 320"
+          className="relative"
+          preserveAspectRatio="xMidYMid meet"
         >
-          {/* Purple section - left */}
+          {/* Purple section - left curved "3" shape */}
           <path
-            d="M 80 60 Q 95 60 110 75 L 110 140 Q 95 155 80 155 Q 70 155 65 145 L 65 85 Q 70 60 80 60"
-            fill="url(#purpleGradient)"
+            d="M 90 50 Q 120 40 140 60 L 140 80 Q 115 70 95 85 L 95 150 Q 110 165 135 170 L 135 190 Q 105 185 85 160 Q 70 140 70 110 Q 70 75 90 50 Z"
+            fill="none"
+            stroke="url(#purpleGradient)"
+            strokeWidth="32"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="splash-path-purple"
             style={{
-              animation: "draw-purple 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+              animation: "draw-stroke-purple 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards",
+              filter: "drop-shadow(0 0 20px rgba(168, 85, 247, 0.5))",
             }}
           />
 
-          {/* Red/Magenta section - right */}
+          {/* Red/Magenta section - right curved "3" shape */}
           <path
-            d="M 170 60 Q 200 75 210 110 Q 215 140 200 165 Q 180 190 160 190 Q 150 190 145 175 L 145 85 Q 155 60 170 60"
-            fill="url(#redGradient)"
+            d="M 230 50 Q 260 40 280 70 Q 295 95 295 130 Q 295 160 280 185 Q 260 210 220 220 L 220 195 Q 250 190 265 170 Q 280 150 280 125 Q 280 95 260 75 Q 245 60 230 70 L 230 50 Z"
+            fill="none"
+            stroke="url(#redGradient)"
+            strokeWidth="32"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="splash-path-red"
             style={{
-              animation: "draw-red 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards",
+              animation: "draw-stroke-red 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards",
               opacity: 0,
             }}
           />
 
-          {/* Cyan section - center lightning bolt */}
+          {/* Cyan lightning bolt section - center accent */}
           <path
-            d="M 125 90 L 115 120 L 130 120 L 110 165 L 135 135 L 120 135 L 140 90 Z"
-            fill="url(#cyanGradient)"
+            d="M 160 80 L 145 130 L 165 130 L 140 200 L 175 155 L 155 155 L 175 80 Z"
+            fill="none"
+            stroke="url(#cyanGradient)"
+            strokeWidth="24"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="splash-path-cyan"
             style={{
-              animation: "draw-cyan 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards",
+              animation: "draw-stroke-cyan 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.6s forwards",
               opacity: 0,
+              filter: "drop-shadow(0 0 15px rgba(6, 182, 212, 0.6))",
             }}
           />
 
-          {/* Gradients */}
+          {/* Gradients for each section */}
           <defs>
             <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#a855f7" />
@@ -84,81 +95,79 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           </defs>
         </svg>
 
-        {/* REVIORA text */}
-        <div className="text-center mt-4">
-          <div
-            className="text-4xl font-bold tracking-wider text-white"
-            style={{
-              animation: "fade-up-text 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s both",
-              letterSpacing: "0.15em",
-              fontWeight: 700,
-              textTransform: "uppercase",
-            }}
-          >
-            <span>REVIORA</span>
-          </div>
+        {/* REVIORA text - fades in after logo animation */}
+        <div
+          className="text-5xl font-bold tracking-[0.2em] text-white"
+          style={{
+            animation: "fade-in-text 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s both",
+            fontWeight: 900,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+          }}
+        >
+          REVIORA
         </div>
       </div>
 
-      {/* Fade out animation wrapper */}
+      {/* Fade out entire splash screen */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-black"
         style={{
-          animation: "splash-fade-out 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2.6s forwards",
+          animation: "splash-fade-out 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2.4s forwards",
           pointerEvents: "none",
         }}
       />
 
       <style jsx>{`
-        @keyframes draw-purple {
+        @keyframes draw-stroke-purple {
           from {
-            stroke-dasharray: 200;
-            stroke-dashoffset: 200;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
             opacity: 0;
-            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.6));
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
           }
           to {
-            stroke-dasharray: 200;
+            stroke-dasharray: 400;
             stroke-dashoffset: 0;
             opacity: 1;
-            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4));
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
           }
         }
 
-        @keyframes draw-red {
+        @keyframes draw-stroke-red {
           from {
-            stroke-dasharray: 200;
-            stroke-dashoffset: 200;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
             opacity: 0;
-            filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.6));
+            filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.3));
           }
           to {
-            stroke-dasharray: 200;
+            stroke-dasharray: 400;
             stroke-dashoffset: 0;
             opacity: 1;
-            filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.4));
+            filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.5));
           }
         }
 
-        @keyframes draw-cyan {
+        @keyframes draw-stroke-cyan {
           from {
-            stroke-dasharray: 150;
-            stroke-dashoffset: 150;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
             opacity: 0;
-            filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));
+            filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.3));
           }
           to {
-            stroke-dasharray: 150;
+            stroke-dasharray: 300;
             stroke-dashoffset: 0;
             opacity: 1;
-            filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.4));
+            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.6));
           }
         }
 
-        @keyframes fade-up-text {
+        @keyframes fade-in-text {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(10px);
           }
           to {
             opacity: 1;
@@ -168,19 +177,19 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
 
         @keyframes splash-fade-out {
           from {
-            opacity: 0;
+            opacity: 1;
+            visibility: visible;
           }
           to {
-            opacity: 1;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
           }
         }
 
         .splash-path-purple,
         .splash-path-red,
         .splash-path-cyan {
-          will-change: stroke-dashoffset, opacity;
+          will-change: stroke-dashoffset, opacity, filter;
         }
       `}</style>
     </div>
