@@ -57,7 +57,7 @@ export function CreatorCredit() {
 
         {/* Content */}
         <div 
-          className="relative z-10 flex flex-col items-center gap-2 py-6 px-6"
+          className="relative z-10 flex flex-col items-center gap-2 py-6 px-6 w-full"
           style={{
             transform: isVisible ? "translateY(0)" : "translateY(32px)",
             opacity: isVisible ? 1 : 0,
@@ -82,11 +82,6 @@ export function CreatorCredit() {
           {/* Tagline */}
           <p className="text-white/50 text-xs tracking-wide font-light italic mt-1">
             Building ideas into experiences
-          </p>
-
-          {/* Copyright */}
-          <p className="text-white/30 text-xs tracking-wide font-light mt-2">
-            © 2026 Reviora. All Rights Reserved.
           </p>
 
           {/* Explore more */}
@@ -171,6 +166,11 @@ export function CreatorCredit() {
               </svg>
             </a>
           </div>
+
+          {/* Copyright - at the very bottom */}
+          <p className="text-white/30 text-xs tracking-wide font-light mt-3 pt-3 border-t border-white/[0.08]">
+            © 2026 Reviora. All Rights Reserved.
+          </p>
         </div>
       </div>
     </section>
