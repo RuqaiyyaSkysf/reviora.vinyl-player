@@ -64,19 +64,19 @@ export function CreatorCredit() {
             transition: "transform 0.6s ease-out 0.1s, opacity 0.6s ease-out 0.1s",
           }}
         >
-          {/* Created by label */}
-          <p className="text-white/40 text-xs tracking-[0.3em] uppercase font-light">
-            Created by
+          {/* REVIORA */}
+          <h2 className="text-white text-3xl md:text-4xl font-light tracking-wide">
+            REVIORA
+          </h2>
+
+          {/* A Rayality Project */}
+          <p className="text-white/60 text-sm md:text-base tracking-wider font-light">
+            A Rayality Project
           </p>
 
-          {/* Creator name */}
-          <h3 className="text-white text-2xl md:text-3xl font-light tracking-wide">
-            Raya Izel
-          </h3>
-
-          {/* Handle */}
-          <p className="text-white/60 text-sm md:text-base tracking-wider font-light">
-            raya.1ity
+          {/* Created by Raya Izel */}
+          <p className="text-white/40 text-xs tracking-[0.3em] uppercase font-light">
+            Created by Raya Izel
           </p>
 
           {/* Tagline */}
@@ -84,8 +84,13 @@ export function CreatorCredit() {
             Building ideas into experiences
           </p>
 
+          {/* Copyright */}
+          <p className="text-white/30 text-xs tracking-wide font-light mt-4">
+            © 2026 Reviora. All Rights Reserved.
+          </p>
+
           {/* Explore more */}
-          <p className="text-white/40 text-xs tracking-[0.2em] uppercase font-light mt-4">
+          <p className="text-white/40 text-xs tracking-[0.2em] uppercase font-light mt-6">
             Explore more
           </p>
 
