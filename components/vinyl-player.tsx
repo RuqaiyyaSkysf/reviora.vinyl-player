@@ -24,6 +24,7 @@ import { VintageBackground } from "./backgrounds/vintage-background"
 import { MasjidBackground } from "./backgrounds/masjid-background"
 import { DesertMoonBackground } from "./backgrounds/desert-moon-background"
 import { CreatorCredit } from "./creator-credit"
+import { BrandHeader } from "./brand-header"
 import { cn } from "@/lib/utils"
 
 export function VinylPlayer() {
@@ -160,6 +161,8 @@ export function VinylPlayer() {
         styles.overlay
       )}
     >
+      {/* Brand header */}
+      <BrandHeader />
       {/* Animated backgrounds for special themes with fade transitions */}
       <div 
         className={cn(
