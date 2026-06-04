@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { Instagram, Youtube, X } from "lucide-react"
 import { track } from "@vercel/analytics"
 import { cn } from "@/lib/utils"
@@ -20,6 +20,7 @@ export function SupportPrompt({
   const [isVisible, setIsVisible] = useState(false)
   const [isDismissedForSession, setIsDismissedForSession] = useState(false)
   const [isAnimatingOut, setIsAnimatingOut] = useState(false)
+  const sessionStartTimeRef = useRef<number>(Date.now()) // Track session start time in ref to persist across renders
 
   const hidePrompt = useCallback(() => {
     setIsAnimatingOut(true)
@@ -33,31 +34,24 @@ export function SupportPrompt({
   useEffect(() => {
     if (isDismissedForSession) return
 
-    let sessionStartTime: number | null = null
     let interval: NodeJS.Timeout | null = null
 
-    const startTimer = () => {
-      sessionStartTime = Date.now()
-      
-      interval = setInterval(() => {
-        if (sessionStartTime !== null && !isDismissedForSession && !isVisible) {
-          const elapsedMs = Date.now() - sessionStartTime
-          
-          // Show prompt after 30 minutes of session time
-          if (elapsedMs >= SESSION_THRESHOLD_MS) {
-            setIsVisible(true)
-            if (interval) clearInterval(interval)
-          }
+    interval = setInterval(() => {
+      if (!isDismissedForSession && !isVisible) {
+        const elapsedMs = Date.now() - sessionStartTimeRef.current
+        
+        // Show prompt after 30 minutes of session time
+        if (elapsedMs >= SESSION_THRESHOLD_MS) {
+          setIsVisible(true)
+          if (interval) clearInterval(interval)
         }
-      }, 1000)
-    }
-
-    startTimer()
+      }
+    }, 1000)
 
     return () => {
       if (interval) clearInterval(interval)
     }
-  }, [isDismissedForSession, isVisible])
+  }, [isDismissedForSession])
 
   const handleFollowInstagram = () => {
     track("support_popup_instagram_click")
