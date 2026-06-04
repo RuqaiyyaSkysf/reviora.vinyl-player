@@ -153,7 +153,7 @@ export function SupportPrompt({
         <div className="space-y-5 text-center">
           {/* Title */}
           <h2 className="text-2xl font-semibold text-foreground leading-tight">
-            Enjoying the player?
+            Enjoying Reviora?
           </h2>
 
           {/* Message */}
@@ -165,7 +165,7 @@ export function SupportPrompt({
               If you enjoy using it, you can support my work and follow the journey behind it.
             </p>
             <p className="pt-1 text-xs text-muted-foreground/70">
-              I share content around coding, aesthetics, creative technology, STEM ideas, and immersive digital experiences.
+              I share content around coding, creativity, technology, STEM ideas, and immersive digital experiences.
             </p>
           </div>
 
@@ -199,7 +199,7 @@ export function SupportPrompt({
                 onClick={handleDontShowAgain}
                 className="flex-1 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground/60 transition-all hover:bg-white/5 hover:text-muted-foreground active:scale-95"
               >
-                Don&apos;t Show
+                Hide for Session
               </button>
             </div>
           </div>
