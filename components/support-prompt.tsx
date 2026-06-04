@@ -8,7 +8,7 @@ import { usePlayer } from "@/contexts/player-context"
 import { SOCIAL_LINKS } from "@/config/social-links"
 
 const USAGE_THRESHOLD_MS = 30 * 60 * 1000 // 30 minutes in milliseconds
-const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000 // 5 minutes of inactivity resets active time
+const ACTIVITY_DETECTION_WINDOW_MS = 30 * 1000 // 30 seconds of no activity/playback to pause timer
 
 interface SupportPromptProps {
   instagramUrl?: string
@@ -24,16 +24,13 @@ export function SupportPrompt({
   const [isDismissedForSession, setIsDismissedForSession] = useState(false)
   const [isAnimatingOut, setIsAnimatingOut] = useState(false)
   const [activeTimeMs, setActiveTimeMs] = useState(0)
+  const [isTimerActive, setIsTimerActive] = useState(false) // Track if timer is currently counting
   const inactivityTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const lastActivityRef = useRef<number>(Date.now())
 
   const showPrompt = useCallback(() => {
-    console.log("[v0] showPrompt() called - isDismissedForSession:", isDismissedForSession)
     if (!isDismissedForSession) {
-      console.log("[v0] Setting isVisible to true")
       setIsVisible(true)
-    } else {
-      console.log("[v0] NOT showing popup - isDismissedForSession is true")
     }
   }, [isDismissedForSession])
 
@@ -49,10 +46,19 @@ export function SupportPrompt({
   useEffect(() => {
     if (isDismissedForSession || isVisible) return
 
-    console.log("[v0] Support Prompt timer started")
-
     const handleUserInteraction = () => {
       lastActivityRef.current = Date.now()
+      setIsTimerActive(true)
+
+      // Clear existing timeout if any
+      if (inactivityTimeoutRef.current) {
+        clearTimeout(inactivityTimeoutRef.current)
+      }
+
+      // Set new timeout: if no activity for ACTIVITY_DETECTION_WINDOW_MS, pause timer
+      inactivityTimeoutRef.current = setTimeout(() => {
+        setIsTimerActive(false)
+      }, ACTIVITY_DETECTION_WINDOW_MS)
     }
 
     // Add event listeners for user interactions
@@ -61,36 +67,34 @@ export function SupportPrompt({
       document.addEventListener(event, handleUserInteraction, true)
     })
 
-    // Increment active time every second if music is playing OR there was recent user activity
-    const interval = setInterval(() => {
-      const now = Date.now()
-      const timeSinceLastActivity = now - lastActivityRef.current
+    // Initialize: start with activity detected
+    handleUserInteraction()
 
-      if (isPlaying || timeSinceLastActivity < 30000) {
-        // Continue counting if music is playing or there was activity within last 30 seconds
-        setActiveTimeMs((prev) => {
-          const newTime = prev + 1000
-          // Debug: log every 10 seconds
-          if (newTime % 10000 === 0) {
-            console.log("[v0] Support Popup timer: " + (newTime / 1000) + "s (isPlaying: " + isPlaying + ", timeSinceLastActivity: " + (timeSinceLastActivity / 1000) + "s)")
-          }
-          // Show prompt when 30 minutes of active usage reached
-          if (newTime >= USAGE_THRESHOLD_MS) {
-            console.log("[v0] Support Popup: 30 minute threshold reached, showing popup")
-            showPrompt()
-            return 0 // Reset counter after showing
-          }
-          return newTime
-        })
-      } else if (timeSinceLastActivity > INACTIVITY_TIMEOUT_MS) {
-        // Reset if more than 5 minutes of complete inactivity
-        console.log("[v0] Support Popup: 5 minute inactivity detected, resetting timer")
-        setActiveTimeMs(0)
-      }
+    // Increment active time every second when timer is active (music playing OR recent activity)
+    const interval = setInterval(() => {
+      setIsTimerActive((prevActive) => {
+        const shouldCount = isPlaying || prevActive
+        
+        if (shouldCount) {
+          setActiveTimeMs((prev) => {
+            const newTime = prev + 1000
+            // Show prompt when 30 minutes of active usage reached
+            if (newTime >= USAGE_THRESHOLD_MS) {
+              showPrompt()
+              return 0 // Reset counter after showing
+            }
+            return newTime
+          })
+        }
+        return prevActive
+      })
     }, 1000)
 
     return () => {
       clearInterval(interval)
+      if (inactivityTimeoutRef.current) {
+        clearTimeout(inactivityTimeoutRef.current)
+      }
       events.forEach((event) => {
         document.removeEventListener(event, handleUserInteraction, true)
       })
