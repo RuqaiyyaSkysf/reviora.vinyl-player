@@ -1,14 +1,12 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Instagram, Youtube, X } from "lucide-react"
 import { track } from "@vercel/analytics"
 import { cn } from "@/lib/utils"
-import { usePlayer } from "@/contexts/player-context"
 import { SOCIAL_LINKS } from "@/config/social-links"
 
-const USAGE_THRESHOLD_MS = 30 * 60 * 1000 // 30 minutes in milliseconds
-const ACTIVITY_DETECTION_WINDOW_MS = 30 * 1000 // 30 seconds of no activity/playback to pause timer
+const SESSION_THRESHOLD_MS = 30 * 60 * 1000 // 30 minutes in milliseconds
 
 interface SupportPromptProps {
   instagramUrl?: string
@@ -19,20 +17,9 @@ export function SupportPrompt({
   instagramUrl = SOCIAL_LINKS.instagram,
   youtubeUrl = SOCIAL_LINKS.youtube,
 }: SupportPromptProps) {
-  const { isPlaying } = usePlayer()
   const [isVisible, setIsVisible] = useState(false)
   const [isDismissedForSession, setIsDismissedForSession] = useState(false)
   const [isAnimatingOut, setIsAnimatingOut] = useState(false)
-  const [activeTimeMs, setActiveTimeMs] = useState(0)
-  const [isTimerActive, setIsTimerActive] = useState(false) // Track if timer is currently counting
-  const inactivityTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const lastActivityRef = useRef<number>(Date.now())
-
-  const showPrompt = useCallback(() => {
-    if (!isDismissedForSession) {
-      setIsVisible(true)
-    }
-  }, [isDismissedForSession])
 
   const hidePrompt = useCallback(() => {
     setIsAnimatingOut(true)
@@ -42,64 +29,35 @@ export function SupportPrompt({
     }, 200)
   }, [])
 
-  // Track active usage (music playback + user interactions)
+  // Simple session timer: count elapsed time continuously
   useEffect(() => {
-    if (isDismissedForSession || isVisible) return
+    if (isDismissedForSession) return
 
-    const handleUserInteraction = () => {
-      lastActivityRef.current = Date.now()
-      setIsTimerActive(true)
+    let sessionStartTime: number | null = null
+    let interval: NodeJS.Timeout | null = null
 
-      // Clear existing timeout if any
-      if (inactivityTimeoutRef.current) {
-        clearTimeout(inactivityTimeoutRef.current)
-      }
-
-      // Set new timeout: if no activity for ACTIVITY_DETECTION_WINDOW_MS, pause timer
-      inactivityTimeoutRef.current = setTimeout(() => {
-        setIsTimerActive(false)
-      }, ACTIVITY_DETECTION_WINDOW_MS)
+    const startTimer = () => {
+      sessionStartTime = Date.now()
+      
+      interval = setInterval(() => {
+        if (sessionStartTime !== null && !isDismissedForSession && !isVisible) {
+          const elapsedMs = Date.now() - sessionStartTime
+          
+          // Show prompt after 30 minutes of session time
+          if (elapsedMs >= SESSION_THRESHOLD_MS) {
+            setIsVisible(true)
+            if (interval) clearInterval(interval)
+          }
+        }
+      }, 1000)
     }
 
-    // Add event listeners for user interactions
-    const events = ["click", "scroll", "keydown", "mousemove", "touchstart"]
-    events.forEach((event) => {
-      document.addEventListener(event, handleUserInteraction, true)
-    })
-
-    // Initialize: start with activity detected
-    handleUserInteraction()
-
-    // Increment active time every second when timer is active (music playing OR recent activity)
-    const interval = setInterval(() => {
-      setIsTimerActive((prevActive) => {
-        const shouldCount = isPlaying || prevActive
-        
-        if (shouldCount) {
-          setActiveTimeMs((prev) => {
-            const newTime = prev + 1000
-            // Show prompt when 30 minutes of active usage reached
-            if (newTime >= USAGE_THRESHOLD_MS) {
-              showPrompt()
-              return 0 // Reset counter after showing
-            }
-            return newTime
-          })
-        }
-        return prevActive
-      })
-    }, 1000)
+    startTimer()
 
     return () => {
-      clearInterval(interval)
-      if (inactivityTimeoutRef.current) {
-        clearTimeout(inactivityTimeoutRef.current)
-      }
-      events.forEach((event) => {
-        document.removeEventListener(event, handleUserInteraction, true)
-      })
+      if (interval) clearInterval(interval)
     }
-  }, [isPlaying, isDismissedForSession, isVisible, showPrompt])
+  }, [isDismissedForSession, isVisible])
 
   const handleFollowInstagram = () => {
     track("support_popup_instagram_click")
@@ -115,9 +73,7 @@ export function SupportPrompt({
 
   const handleMaybeLater = () => {
     hidePrompt()
-    // Reset active time counter to show again after another 30 minutes of active usage
-    setActiveTimeMs(0)
-    lastActivityRef.current = Date.now()
+    // Timer continues running; popup will show again after another ~30 minutes of session time
   }
 
   const handleDontShowAgain = () => {
