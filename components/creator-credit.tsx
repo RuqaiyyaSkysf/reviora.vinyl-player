@@ -32,13 +32,13 @@ export function CreatorCredit() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-[280px] overflow-hidden"
+      className="relative w-full min-h-[220px] overflow-hidden"
       aria-label="Creator credits"
     >
       {/* Dark translucent glassmorphism panel — opaque backdrop with theme showing through slightly */}
       <div
         className={cn(
-          "relative w-full min-h-[240px] flex items-center justify-center",
+          "relative w-full min-h-[200px] flex items-center justify-center",
           "backdrop-blur-[14px]",
           "bg-black/60",
           "border-t border-white/[0.08]"
@@ -50,14 +50,14 @@ export function CreatorCredit() {
         }}
       >
         {/* Soft top fade — blends the panel edge into the theme above */}
-        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
         
         {/* Subtle inner highlight */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
 
         {/* Content */}
         <div 
-          className="relative z-10 flex flex-col items-center gap-4 py-10 px-6"
+          className="relative z-10 flex flex-col items-center gap-2 py-6 px-6"
           style={{
             transform: isVisible ? "translateY(0)" : "translateY(32px)",
             opacity: isVisible ? 1 : 0,
@@ -65,12 +65,12 @@ export function CreatorCredit() {
           }}
         >
           {/* REVIORA */}
-          <h2 className="text-white text-3xl md:text-4xl font-light tracking-wide">
+          <h2 className="text-white text-2xl md:text-3xl font-light tracking-wide">
             REVIORA
           </h2>
 
           {/* A Rayality Project */}
-          <p className="text-white/60 text-sm md:text-base tracking-wider font-light">
+          <p className="text-white/60 text-xs md:text-sm tracking-wider font-light">
             A Rayality Project
           </p>
 
@@ -80,23 +80,23 @@ export function CreatorCredit() {
           </p>
 
           {/* Tagline */}
-          <p className="text-white/50 text-xs md:text-sm tracking-wide font-light italic mt-2">
+          <p className="text-white/50 text-xs tracking-wide font-light italic mt-1">
             Building ideas into experiences
           </p>
 
           {/* Copyright */}
-          <p className="text-white/30 text-xs tracking-wide font-light mt-4">
+          <p className="text-white/30 text-xs tracking-wide font-light mt-2">
             © 2026 Reviora. All Rights Reserved.
           </p>
 
           {/* Explore more */}
-          <p className="text-white/40 text-xs tracking-[0.2em] uppercase font-light mt-6">
+          <p className="text-white/40 text-xs tracking-[0.2em] uppercase font-light mt-3">
             Explore more
           </p>
 
           {/* Social links */}
           <div 
-            className="flex items-center justify-center gap-8 mt-2"
+            className="flex items-center justify-center gap-8 mt-3"
             style={{
               transform: isVisible ? "translateY(0)" : "translateY(16px)",
               opacity: isVisible ? 1 : 0,
