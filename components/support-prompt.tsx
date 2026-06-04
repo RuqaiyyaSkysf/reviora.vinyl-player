@@ -28,8 +28,12 @@ export function SupportPrompt({
   const lastActivityRef = useRef<number>(Date.now())
 
   const showPrompt = useCallback(() => {
+    console.log("[v0] showPrompt() called - isDismissedForSession:", isDismissedForSession)
     if (!isDismissedForSession) {
+      console.log("[v0] Setting isVisible to true")
       setIsVisible(true)
+    } else {
+      console.log("[v0] NOT showing popup - isDismissedForSession is true")
     }
   }, [isDismissedForSession])
 
@@ -44,6 +48,8 @@ export function SupportPrompt({
   // Track active usage (music playback + user interactions)
   useEffect(() => {
     if (isDismissedForSession || isVisible) return
+
+    console.log("[v0] Support Prompt timer started")
 
     const handleUserInteraction = () => {
       lastActivityRef.current = Date.now()
@@ -64,8 +70,13 @@ export function SupportPrompt({
         // Continue counting if music is playing or there was activity within last 30 seconds
         setActiveTimeMs((prev) => {
           const newTime = prev + 1000
+          // Debug: log every 10 seconds
+          if (newTime % 10000 === 0) {
+            console.log("[v0] Support Popup timer: " + (newTime / 1000) + "s (isPlaying: " + isPlaying + ", timeSinceLastActivity: " + (timeSinceLastActivity / 1000) + "s)")
+          }
           // Show prompt when 30 minutes of active usage reached
           if (newTime >= USAGE_THRESHOLD_MS) {
+            console.log("[v0] Support Popup: 30 minute threshold reached, showing popup")
             showPrompt()
             return 0 // Reset counter after showing
           }
@@ -73,6 +84,7 @@ export function SupportPrompt({
         })
       } else if (timeSinceLastActivity > INACTIVITY_TIMEOUT_MS) {
         // Reset if more than 5 minutes of complete inactivity
+        console.log("[v0] Support Popup: 5 minute inactivity detected, resetting timer")
         setActiveTimeMs(0)
       }
     }, 1000)
