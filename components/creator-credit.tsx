@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { track } from "@vercel/analytics"
 import { cn } from "@/lib/utils"
 import { SOCIAL_LINKS } from "@/config/social-links"
 
@@ -103,6 +104,7 @@ export function CreatorCredit() {
               href={SOCIAL_LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track("instagram_click")}
               className="group text-white/50 hover:text-white transition-all duration-300"
               aria-label="Instagram"
             >
@@ -120,6 +122,7 @@ export function CreatorCredit() {
               href={SOCIAL_LINKS.youtube}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track("youtube_click")}
               className="group text-white/50 hover:text-white transition-all duration-300"
               aria-label="YouTube"
             >
@@ -154,6 +157,7 @@ export function CreatorCredit() {
               href={SOCIAL_LINKS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track("linkedin_click")}
               className="group text-white/50 hover:text-white transition-all duration-300"
               aria-label="LinkedIn"
             >

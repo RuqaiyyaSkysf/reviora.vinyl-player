@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import { Instagram, Youtube, X } from "lucide-react"
+import { track } from "@vercel/analytics"
 import { cn } from "@/lib/utils"
 import { usePlayer } from "@/contexts/player-context"
 import { SOCIAL_LINKS } from "@/config/social-links"
@@ -85,11 +86,13 @@ export function SupportPrompt({
   }, [isPlaying, isDismissedForSession, isVisible, showPrompt])
 
   const handleFollowInstagram = () => {
+    track("support_popup_instagram_click")
     window.open(instagramUrl, "_blank", "noopener,noreferrer")
     hidePrompt()
   }
 
   const handleSubscribeYoutube = () => {
+    track("support_popup_youtube_click")
     window.open(youtubeUrl, "_blank", "noopener,noreferrer")
     hidePrompt()
   }
