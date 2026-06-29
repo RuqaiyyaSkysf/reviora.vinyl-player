@@ -403,19 +403,37 @@ export function VinylRecord() {
         />
 
         {/* Vinyl grooves with varying opacity */}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className={cn(
-              "absolute rounded-full border transition-colors duration-500",
-              styles.grooves
-            )}
-            style={{
-              inset: `${10 + i * 6}%`,
-              opacity: 0.4 + (i % 3) * 0.2,
-            }}
-          />
-        ))}
+        {[...Array(12)].map((_, i) => {
+          // Extract color from styles.grooves (e.g., "border-zinc-500/80" -> "rgb(113, 113, 122)")
+          const grooveColorMap: Record<string, string> = {
+            "border-zinc-500/80": "rgb(113, 113, 122)",
+            "border-rose-400/80": "rgb(251, 113, 133)",
+            "border-purple-400/80": "rgb(192, 132, 250)",
+            "border-amber-600/80": "rgb(217, 119, 6)",
+            "border-indigo-400/80": "rgb(129, 140, 248)",
+            "border-orange-500/80": "rgb(249, 115, 22)",
+            "border-red-800/80": "rgb(153, 27, 27)",
+            "border-purple-500/80": "rgb(168, 85, 247)",
+            "border-purple-900/80": "rgb(88, 28, 135)",
+            "border-amber-700/80": "rgb(180, 83, 9)",
+            "border-gray-500/80": "rgb(107, 114, 128)",
+            "border-green-600/80": "rgb(22, 163, 74)",
+          };
+          const grooveColor = grooveColorMap[styles.grooves] || "rgb(113, 113, 122)";
+          
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full border transition-colors duration-500"
+              style={{
+                inset: `${10 + i * 6}%`,
+                opacity: 0.8 + (i % 3) * 0.1,
+                borderColor: grooveColor,
+                borderWidth: "1px",
+              }}
+            />
+          );
+        })}
 
         {/* Subtle radial lines for realism */}
         <div
