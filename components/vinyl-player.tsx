@@ -163,7 +163,7 @@ export function VinylPlayer() {
       {/* Animated backgrounds for special themes with fade transitions */}
       <div 
         className={cn(
-          "absolute inset-0 transition-opacity duration-500 ease-in-out",
+          "absolute inset-0 z-0 transition-opacity duration-500 ease-in-out",
           displayTheme === "galaxy" ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
       >
@@ -324,7 +324,7 @@ export function VinylPlayer() {
                 {/* Standard vinyl display for blurred mode and View All modes */}
                 <div 
                   className={cn(
-                    "relative z-20 flex items-center justify-center",
+                    "relative z-50 flex items-center justify-center",
                     "drop-shadow-2xl transition-all duration-500",
                     viewMode === "vinyl-only" && currentTrack 
                       ? "w-full max-w-lg" 

@@ -372,7 +372,7 @@ export function VinylRecord() {
       <div
         ref={vinylRef}
         className={cn(
-          "relative z-20 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full transition-shadow duration-700",
+          "relative z-50 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full transition-shadow duration-700",
           "shadow-[0_25px_60px_-12px_rgba(0,0,0,0.8)]",
           `bg-gradient-to-br ${styles.vinyl}`,
           styles.innerShadow,
