@@ -178,7 +178,7 @@ export function Tonearm() {
 
   return (
     <div 
-      className="absolute right-0 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
+      className="absolute right-0 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 cursor-pointer"
       onClick={handleTonearmClick}
       onTouchEnd={handleTonearmClick}
       role="button"

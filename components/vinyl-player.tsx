@@ -324,7 +324,7 @@ export function VinylPlayer() {
                 {/* Standard vinyl display for blurred mode and View All modes */}
                 <div 
                   className={cn(
-                    "relative flex items-center justify-center",
+                    "relative z-20 flex items-center justify-center",
                     "drop-shadow-2xl transition-all duration-500",
                     viewMode === "vinyl-only" && currentTrack 
                       ? "w-full max-w-lg" 
