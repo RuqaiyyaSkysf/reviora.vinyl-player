@@ -178,7 +178,7 @@ export function Tonearm() {
 
   return (
     <div 
-      className="absolute right-0 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 cursor-pointer"
+      className="absolute right-0 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-[60] cursor-pointer"
       onClick={handleTonearmClick}
       onTouchEnd={handleTonearmClick}
       role="button"
@@ -197,19 +197,51 @@ export function Tonearm() {
         <div
           className={cn(
             "w-12 h-12 rounded-full",
-            "bg-gradient-to-br transition-all duration-500",
-            colors.base,
-            "shadow-[0_4px_15px_rgba(0,0,0,0.4),inset_0_2px_4px_rgba(255,255,255,0.1)]"
+            "transition-all duration-500"
           )}
+          style={{
+            background: `linear-gradient(135deg, ${
+              theme === "black" ? "rgb(82, 82, 91), rgb(71, 71, 78)" :
+              theme === "pink" ? "rgb(244, 63, 94), rgb(236, 72, 153)" :
+              theme === "coding" ? "rgb(147, 51, 234), rgb(88, 28, 135)" :
+              theme === "maroon" ? "rgb(217, 119, 6), rgb(120, 53, 15)" :
+              theme === "galaxy" ? "rgb(79, 70, 229), rgb(30, 27, 49)" :
+              theme === "flame" ? "rgb(217, 119, 6), rgb(153, 27, 27)" :
+              theme === "blood" ? "rgb(153, 27, 27), rgb(59, 13, 13)" :
+              theme === "nightcity" ? "rgb(147, 51, 234), rgb(88, 28, 135)" :
+              theme === "gothic" ? "rgb(55, 65, 81), rgb(88, 28, 135)" :
+              theme === "vintage" ? "rgb(217, 119, 6), rgb(120, 53, 15)" :
+              theme === "masjid" ? "rgb(55, 65, 81), rgb(30, 27, 49)" :
+              theme === "desert-moon" ? "rgb(30, 41, 59), rgb(15, 23, 42)" :
+              "rgb(82, 82, 91), rgb(71, 71, 78)"
+            })`,
+            boxShadow: "0 4px 15px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.1)"
+          }}
         >
           {/* Inner ring */}
           <div
             className={cn(
               "absolute inset-1.5 rounded-full",
-              "bg-gradient-to-br transition-all duration-500",
-              colors.baseHighlight,
-              "shadow-[inset_0_2px_6px_rgba(0,0,0,0.3)]"
+              "transition-all duration-500"
             )}
+            style={{
+              background: `linear-gradient(135deg, ${
+                theme === "black" ? "rgb(113, 113, 122), rgb(82, 82, 91)" :
+                theme === "pink" ? "rgb(251, 113, 133), rgb(244, 63, 94)" :
+                theme === "coding" ? "rgb(168, 85, 247), rgb(147, 51, 234)" :
+                theme === "maroon" ? "rgb(251, 191, 36), rgb(217, 119, 6)" :
+                theme === "galaxy" ? "rgb(129, 140, 248), rgb(79, 70, 229)" :
+                theme === "flame" ? "rgb(251, 146, 60), rgb(217, 119, 6)" :
+                theme === "blood" ? "rgb(252, 165, 165), rgb(153, 27, 27)" :
+                theme === "nightcity" ? "rgb(192, 132, 250), rgb(147, 51, 234)" :
+                theme === "gothic" ? "rgb(148, 163, 184), rgb(55, 65, 81)" :
+                theme === "vintage" ? "rgb(251, 191, 36), rgb(217, 119, 6)" :
+                theme === "masjid" ? "rgb(148, 163, 184), rgb(55, 65, 81)" :
+                theme === "desert-moon" ? "rgb(71, 85, 105), rgb(30, 41, 59)" :
+                "rgb(113, 113, 122), rgb(82, 82, 91)"
+              })`,
+              boxShadow: "inset 0 2px 6px rgba(0,0,0,0.3)"
+            }}
           />
           {/* Center pivot */}
           <div className="absolute inset-3 rounded-full bg-zinc-800 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]" />
@@ -238,10 +270,26 @@ export function Tonearm() {
           <div
             className={cn(
               "relative w-36 sm:w-44 md:w-52 h-2.5 rounded-full",
-              "bg-gradient-to-b transition-all duration-500",
-              colors.arm,
-              "shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
+              "transition-all duration-500"
             )}
+            style={{
+              background: `linear-gradient(to bottom, ${
+                theme === "black" ? "rgb(229, 229, 230), rgb(168, 162, 158)" :
+                theme === "pink" ? "rgb(229, 229, 230), rgb(168, 162, 158)" :
+                theme === "coding" ? "rgb(196, 181, 253), rgb(139, 92, 246)" :
+                theme === "maroon" ? "rgb(253, 224, 71), rgb(217, 119, 6)" :
+                theme === "galaxy" ? "rgb(165, 180, 252), rgb(79, 70, 229)" :
+                theme === "flame" ? "rgb(254, 215, 170), rgb(249, 115, 22)" :
+                theme === "blood" ? "rgb(248, 113, 113), rgb(220, 38, 38)" :
+                theme === "nightcity" ? "rgb(196, 181, 253), rgb(147, 51, 234)" :
+                theme === "gothic" ? "rgb(203, 213, 225), rgb(148, 163, 184)" :
+                theme === "vintage" ? "rgb(254, 243, 199), rgb(180, 83, 9)" :
+                theme === "masjid" ? "rgb(229, 229, 230), rgb(168, 162, 158)" :
+                theme === "desert-moon" ? "rgb(148, 163, 184), rgb(71, 85, 105)" :
+                "rgb(229, 229, 230), rgb(168, 162, 158)"
+              })`,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.4)"
+            }}
           >
             {/* Arm highlight */}
             <div
