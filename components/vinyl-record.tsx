@@ -512,7 +512,7 @@ export function VinylRecord() {
 
         {/* Realistic light reflection */}
         <div
-          className="absolute inset-0 rounded-full pointer-events-none"
+          className="absolute inset-0 rounded-full pointer-events-none z-30"
           style={{
             background: `
               linear-gradient(
@@ -530,7 +530,7 @@ export function VinylRecord() {
 
         {/* Moving groove reflection - thin light streak across grooves */}
         <div
-          className="absolute inset-[8%] rounded-full pointer-events-none overflow-hidden"
+          className="absolute inset-[8%] rounded-full pointer-events-none overflow-hidden z-25"
         >
           <div
             className="absolute inset-0"
@@ -555,7 +555,7 @@ export function VinylRecord() {
 
         {/* Secondary subtle groove highlight */}
         <div
-          className="absolute inset-[12%] rounded-full pointer-events-none overflow-hidden"
+          className="absolute inset-[12%] rounded-full pointer-events-none overflow-hidden z-25"
         >
           <div
             className="absolute inset-0"
