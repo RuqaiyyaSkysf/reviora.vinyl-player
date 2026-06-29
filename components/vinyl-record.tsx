@@ -323,10 +323,8 @@ export function VinylRecord() {
   const strokeDashoffset = ringCircumference - (progress / 100) * ringCircumference
 
   // Convert gradient classes to CSS values for production compatibility
-  const vinylGradientMap: Record<string, string> = {
-    "from-zinc-900 via-zinc-800 to-zinc-900": "linear-gradient(135deg, #18181b 0%, #27272a 50%, #18181b 100%)",
-  }
-  const vinylGradient = vinylGradientMap[styles.vinyl] || "linear-gradient(135deg, #18181b 0%, #27272a 50%, #18181b 100%)"
+  // All themes use the same dark vinyl gradient
+  const vinylGradient = "linear-gradient(135deg, #18181b 0%, #27272a 50%, #18181b 100%)"
 
   // Convert inner shadow classes to box-shadow values
   const innerShadowMap: Record<string, string> = {
@@ -393,6 +391,11 @@ export function VinylRecord() {
           willChange: "transform",
           background: vinylGradient,
           boxShadow: `0 25px 60px -12px rgba(0,0,0,0.8), ${innerShadow}`,
+          backgroundClip: "border-box",
+          WebkitBackgroundClip: "border-box",
+          MozBackgroundClip: "border-box",
+          filter: "none",
+          mixBlendMode: "normal",
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
