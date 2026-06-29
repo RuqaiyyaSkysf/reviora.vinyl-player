@@ -322,6 +322,17 @@ export function VinylRecord() {
   const ringCircumference = 2 * Math.PI * ringRadius
   const strokeDashoffset = ringCircumference - (progress / 100) * ringCircumference
 
+  // Convert gradient classes to CSS values for production compatibility
+  // All themes use the same dark vinyl gradient
+  const vinylGradient = "linear-gradient(135deg, #18181b 0%, #27272a 50%, #18181b 100%)"
+
+  // Convert inner shadow classes to box-shadow values
+  const innerShadowMap: Record<string, string> = {
+    "shadow-[inset_0_0_60px_rgba(0,0,0,0.8)]": "inset 0 0 60px rgba(0,0,0,0.8)",
+    "shadow-[inset_0_0_60px_rgba(0,0,0,0.7)]": "inset 0 0 60px rgba(0,0,0,0.7)",
+  }
+  const innerShadow = innerShadowMap[styles.innerShadow] || "inset 0 0 60px rgba(0,0,0,0.8)"
+
   return (
     <div className="relative flex items-center justify-center">
       {/* Progress ring container */}
@@ -373,14 +384,18 @@ export function VinylRecord() {
         ref={vinylRef}
         className={cn(
           "relative z-50 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full transition-shadow duration-700",
-          "shadow-[0_25px_60px_-12px_rgba(0,0,0,0.8)]",
-          `bg-gradient-to-br ${styles.vinyl}`,
-          styles.innerShadow,
           isDragging ? "cursor-grabbing" : "cursor-grab"
         )}
         style={{
           transform: `rotate(${rotation}deg)`,
           willChange: "transform",
+          background: vinylGradient,
+          boxShadow: innerShadow,
+          backgroundClip: "border-box",
+          WebkitBackgroundClip: "border-box",
+          MozBackgroundClip: "border-box",
+          filter: "none",
+          mixBlendMode: "normal",
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
@@ -436,9 +451,24 @@ export function VinylRecord() {
             "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
             "w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden",
             "flex items-center justify-center transition-all duration-500 group",
-            "shadow-[0_4px_20px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(0,0,0,0.3)]",
-            !currentTrack?.albumArt && styles.label
+            "shadow-[0_4px_20px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(0,0,0,0.3)]"
           )}
+          style={
+            !currentTrack?.albumArt ? {
+              background: theme === "pink" ? "linear-gradient(to bottom right, rgb(249, 168, 212), rgb(244, 63, 94))" :
+                         theme === "coding" ? "linear-gradient(to bottom right, rgb(147, 51, 234), rgb(37, 99, 235))" :
+                         theme === "maroon" ? "linear-gradient(to bottom right, rgb(217, 119, 6), rgb(217, 119, 6))" :
+                         theme === "galaxy" ? "linear-gradient(to bottom right, rgb(79, 70, 229), rgb(109, 40, 217))" :
+                         theme === "flame" ? "linear-gradient(to bottom right, rgb(249, 115, 22), rgb(220, 38, 38))" :
+                         theme === "blood" ? "linear-gradient(to bottom right, rgb(153, 27, 27), rgb(59, 13, 13))" :
+                         theme === "nightcity" ? "linear-gradient(to bottom right, rgb(147, 51, 234), rgb(219, 39, 119))" :
+                         theme === "gothic" ? "linear-gradient(to bottom right, rgb(30, 27, 49), rgb(88, 28, 135))" :
+                         theme === "vintage" ? "linear-gradient(to bottom right, rgb(180, 83, 9), rgb(120, 53, 15))" :
+                         theme === "masjid" ? "linear-gradient(to bottom right, rgb(15, 23, 42), rgb(15, 23, 42))" :
+                         theme === "desert-moon" ? "linear-gradient(to bottom right, rgb(30, 41, 59), rgb(30, 41, 59))" :
+                         "rgb(9, 9, 11)"
+            } : undefined
+          }
         >
           {currentTrack?.albumArt ? (
             <>
@@ -472,21 +502,27 @@ export function VinylRecord() {
         </div>
 
         {/* Center spindle hole */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-zinc-950 z-10 shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]" />
+        <div 
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full z-10"
+          style={{
+            background: "rgb(9, 9, 11)",
+            boxShadow: "inset 0 2px 4px rgba(0,0,0,0.8)"
+          }}
+        />
 
         {/* Realistic light reflection */}
         <div
-          className="absolute inset-0 rounded-full pointer-events-none"
+          className="absolute inset-0 rounded-full pointer-events-none z-30"
           style={{
             background: `
               linear-gradient(
                 135deg,
-                rgba(255,255,255,0.12) 0%,
-                rgba(255,255,255,0.05) 20%,
-                transparent 40%,
-                transparent 60%,
-                rgba(0,0,0,0.15) 80%,
-                rgba(0,0,0,0.25) 100%
+                rgba(255,255,255,0.18) 0%,
+                rgba(255,255,255,0.08) 25%,
+                transparent 45%,
+                transparent 55%,
+                rgba(0,0,0,0.2) 75%,
+                rgba(0,0,0,0.3) 100%
               )
             `,
           }}
@@ -494,7 +530,7 @@ export function VinylRecord() {
 
         {/* Moving groove reflection - thin light streak across grooves */}
         <div
-          className="absolute inset-[8%] rounded-full pointer-events-none overflow-hidden"
+          className="absolute inset-[8%] rounded-full pointer-events-none overflow-hidden z-25"
         >
           <div
             className="absolute inset-0"
@@ -519,7 +555,7 @@ export function VinylRecord() {
 
         {/* Secondary subtle groove highlight */}
         <div
-          className="absolute inset-[12%] rounded-full pointer-events-none overflow-hidden"
+          className="absolute inset-[12%] rounded-full pointer-events-none overflow-hidden z-25"
         >
           <div
             className="absolute inset-0"
