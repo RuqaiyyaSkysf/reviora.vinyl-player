@@ -390,7 +390,7 @@ export function VinylRecord() {
           transform: `rotate(${rotation}deg)`,
           willChange: "transform",
           background: vinylGradient,
-          boxShadow: `0 25px 60px -12px rgba(0,0,0,0.8), ${innerShadow}`,
+          boxShadow: innerShadow,
           backgroundClip: "border-box",
           WebkitBackgroundClip: "border-box",
           MozBackgroundClip: "border-box",
@@ -517,12 +517,12 @@ export function VinylRecord() {
             background: `
               linear-gradient(
                 135deg,
-                rgba(255,255,255,0.12) 0%,
-                rgba(255,255,255,0.05) 20%,
-                transparent 40%,
-                transparent 60%,
-                rgba(0,0,0,0.15) 80%,
-                rgba(0,0,0,0.25) 100%
+                rgba(255,255,255,0.18) 0%,
+                rgba(255,255,255,0.08) 25%,
+                transparent 45%,
+                transparent 55%,
+                rgba(0,0,0,0.2) 75%,
+                rgba(0,0,0,0.3) 100%
               )
             `,
           }}
