@@ -390,7 +390,7 @@ export function VinylRecord() {
       >
         {/* Vinyl texture overlay */}
         <div
-          className="absolute inset-0 rounded-full opacity-30"
+          className="absolute inset-0 rounded-full"
           style={{
             background: `repeating-radial-gradient(
               circle at center,
@@ -400,6 +400,7 @@ export function VinylRecord() {
               transparent 2px,
               transparent 4px
             )`,
+            opacity: 0.6,
           }}
         />
 
@@ -413,7 +414,7 @@ export function VinylRecord() {
             )}
             style={{
               inset: `${10 + i * 6}%`,
-              opacity: 0.3 + (i % 3) * 0.15,
+              opacity: 0.6 + (i % 3) * 0.25,
             }}
           />
         ))}
