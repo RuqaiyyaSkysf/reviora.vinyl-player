@@ -21,6 +21,7 @@ export function SupportPrompt({
   const [isDismissedForSession, setIsDismissedForSession] = useState(false)
   const [isAnimatingOut, setIsAnimatingOut] = useState(false)
   const sessionStartTimeRef = useRef<number>(Date.now()) // Track session start time in ref to persist across renders
+  const snoozeUntilRef = useRef<number>(0) // Track when to show popup next (for "Remind me in 15 minutes")
 
   const hidePrompt = useCallback(() => {
     setIsAnimatingOut(true)
@@ -39,9 +40,10 @@ export function SupportPrompt({
     interval = setInterval(() => {
       if (!isDismissedForSession && !isVisible) {
         const elapsedMs = Date.now() - sessionStartTimeRef.current
+        const now = Date.now()
         
-        // Show prompt after 30 minutes of session time
-        if (elapsedMs >= SESSION_THRESHOLD_MS) {
+        // Show prompt after 30 minutes of session time, unless snoozed
+        if (elapsedMs >= SESSION_THRESHOLD_MS && now >= snoozeUntilRef.current) {
           setIsVisible(true)
           if (interval) clearInterval(interval)
         }
@@ -66,8 +68,9 @@ export function SupportPrompt({
   }
 
   const handleMaybeLater = () => {
+    // Snooze for 15 minutes
+    snoozeUntilRef.current = Date.now() + (15 * 60 * 1000)
     hidePrompt()
-    // Timer continues running; popup will show again after another ~30 minutes of session time
   }
 
   const handleDontShowAgain = () => {
@@ -161,7 +164,7 @@ export function SupportPrompt({
                 onClick={handleMaybeLater}
                 className="flex-1 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:bg-white/5 hover:text-foreground active:scale-95"
               >
-                Maybe Later
+                Remind me in 15 min
               </button>
 
               <button
