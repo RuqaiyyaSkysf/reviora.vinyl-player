@@ -322,6 +322,19 @@ export function VinylRecord() {
   const ringCircumference = 2 * Math.PI * ringRadius
   const strokeDashoffset = ringCircumference - (progress / 100) * ringCircumference
 
+  // Convert gradient classes to CSS values for production compatibility
+  const vinylGradientMap: Record<string, string> = {
+    "from-zinc-900 via-zinc-800 to-zinc-900": "linear-gradient(135deg, #18181b 0%, #27272a 50%, #18181b 100%)",
+  }
+  const vinylGradient = vinylGradientMap[styles.vinyl] || "linear-gradient(135deg, #18181b 0%, #27272a 50%, #18181b 100%)"
+
+  // Convert inner shadow classes to box-shadow values
+  const innerShadowMap: Record<string, string> = {
+    "shadow-[inset_0_0_60px_rgba(0,0,0,0.8)]": "inset 0 0 60px rgba(0,0,0,0.8)",
+    "shadow-[inset_0_0_60px_rgba(0,0,0,0.7)]": "inset 0 0 60px rgba(0,0,0,0.7)",
+  }
+  const innerShadow = innerShadowMap[styles.innerShadow] || "inset 0 0 60px rgba(0,0,0,0.8)"
+
   return (
     <div className="relative flex items-center justify-center">
       {/* Progress ring container */}
@@ -373,14 +386,13 @@ export function VinylRecord() {
         ref={vinylRef}
         className={cn(
           "relative z-50 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full transition-shadow duration-700",
-          "shadow-[0_25px_60px_-12px_rgba(0,0,0,0.8)]",
-          `bg-gradient-to-br ${styles.vinyl}`,
-          styles.innerShadow,
           isDragging ? "cursor-grabbing" : "cursor-grab"
         )}
         style={{
           transform: `rotate(${rotation}deg)`,
           willChange: "transform",
+          background: vinylGradient,
+          boxShadow: `0 25px 60px -12px rgba(0,0,0,0.8), ${innerShadow}`,
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
