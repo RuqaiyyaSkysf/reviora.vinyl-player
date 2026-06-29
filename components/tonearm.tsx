@@ -226,9 +226,6 @@ export function Tonearm() {
           style={{
             transform: `rotate(${armAngle}deg)`,
             transformOrigin: "right center",
-            perspective: "1000px",
-            backfaceVisibility: "visible",
-            willChange: "transform",
           }}
         >
           {/* Arm shadow */}

@@ -323,13 +323,12 @@ export function VinylRecord() {
   const strokeDashoffset = ringCircumference - (progress / 100) * ringCircumference
 
   return (
-    <div className="relative flex items-center justify-center" style={{ perspective: "1000px" }}>
+    <div className="relative flex items-center justify-center">
       {/* Progress ring container */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ willChange: "opacity" }}>
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <svg
           className="w-[calc(100%+24px)] h-[calc(100%+24px)] -rotate-90"
           viewBox="0 0 108 108"
-          style={{ backfaceVisibility: "visible" }}
         >
           {/* Background ring */}
           <circle
@@ -390,7 +389,7 @@ export function VinylRecord() {
       >
         {/* Vinyl texture overlay */}
         <div
-          className="absolute inset-0 rounded-full"
+          className="absolute inset-0 rounded-full opacity-40"
           style={{
             background: `repeating-radial-gradient(
               circle at center,
@@ -400,7 +399,6 @@ export function VinylRecord() {
               transparent 2px,
               transparent 4px
             )`,
-            opacity: 0.6,
           }}
         />
 
@@ -414,14 +412,14 @@ export function VinylRecord() {
             )}
             style={{
               inset: `${10 + i * 6}%`,
-              opacity: 0.6 + (i % 3) * 0.25,
+              opacity: 0.4 + (i % 3) * 0.2,
             }}
           />
         ))}
 
         {/* Subtle radial lines for realism */}
         <div
-          className="absolute inset-0 rounded-full opacity-10"
+          className="absolute inset-0 rounded-full opacity-20"
           style={{
             background: `conic-gradient(
               from 0deg,
