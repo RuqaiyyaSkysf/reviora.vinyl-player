@@ -207,7 +207,7 @@ export function VinylRecord() {
   }> = {
     black: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-zinc-600/20",
+      grooves: "border-zinc-500/80",
       label: "bg-zinc-950",
       glow: "rgba(255,255,255,0.08)",
       progressRing: "rgba(255,255,255,0.9)",
@@ -216,7 +216,7 @@ export function VinylRecord() {
     },
     pink: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-rose-400/20",
+      grooves: "border-rose-400/80",
       label: "bg-gradient-to-br from-pink-300 to-rose-400",
       glow: "rgba(219,112,147,0.35)",
       progressRing: "rgba(219,112,147,1)",
@@ -225,7 +225,7 @@ export function VinylRecord() {
     },
     coding: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-purple-400/20",
+      grooves: "border-purple-400/80",
       label: "bg-gradient-to-br from-purple-600 to-blue-600",
       glow: "rgba(139,92,246,0.35)",
       progressRing: "rgba(34,211,238,1)",
@@ -234,7 +234,7 @@ export function VinylRecord() {
     },
     maroon: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-amber-600/15",
+      grooves: "border-amber-600/80",
       label: "bg-gradient-to-br from-amber-600 to-amber-500",
       glow: "rgba(217,119,6,0.3)",
       progressRing: "rgba(251,191,36,1)",
@@ -243,7 +243,7 @@ export function VinylRecord() {
     },
     galaxy: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-indigo-400/20",
+      grooves: "border-indigo-400/80",
       label: "bg-gradient-to-br from-indigo-600 to-purple-700",
       glow: "rgba(99,102,241,0.35)",
       progressRing: "rgba(165,180,252,1)",
@@ -252,7 +252,7 @@ export function VinylRecord() {
     },
     flame: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-orange-500/20",
+      grooves: "border-orange-500/80",
       label: "bg-gradient-to-br from-orange-500 to-red-600",
       glow: "rgba(249,115,22,0.35)",
       progressRing: "rgba(251,146,60,1)",
@@ -261,7 +261,7 @@ export function VinylRecord() {
     },
     blood: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-red-800/25",
+      grooves: "border-red-800/80",
       label: "bg-gradient-to-br from-red-800 to-red-950",
       glow: "rgba(185,28,28,0.45)",
       progressRing: "rgba(220,38,38,1)",
@@ -270,7 +270,7 @@ export function VinylRecord() {
     },
     nightcity: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-purple-500/20",
+      grooves: "border-purple-500/80",
       label: "bg-gradient-to-br from-purple-600 to-pink-600",
       glow: "rgba(147,51,234,0.4)",
       progressRing: "rgba(6,182,212,1)",
@@ -279,7 +279,7 @@ export function VinylRecord() {
     },
     gothic: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-purple-900/25",
+      grooves: "border-purple-900/80",
       label: "bg-gradient-to-br from-slate-800 to-purple-950",
       glow: "rgba(100,80,160,0.4)",
       progressRing: "rgba(168,85,247,1)",
@@ -288,7 +288,7 @@ export function VinylRecord() {
     },
     vintage: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-amber-700/20",
+      grooves: "border-amber-700/80",
       label: "bg-gradient-to-br from-amber-700 to-yellow-800",
       glow: "rgba(180,130,60,0.4)",
       progressRing: "rgba(251,191,36,1)",
@@ -297,7 +297,7 @@ export function VinylRecord() {
     },
     masjid: {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-gray-500/15",
+      grooves: "border-gray-500/80",
       label: "bg-gradient-to-br from-gray-200 to-gray-300",
       glow: "rgba(229,231,235,0.35)",
       progressRing: "rgba(229,231,235,1)",
@@ -306,7 +306,7 @@ export function VinylRecord() {
     },
     "desert-moon": {
       vinyl: "from-zinc-900 via-zinc-800 to-zinc-900",
-      grooves: "border-green-600/15",
+      grooves: "border-green-600/80",
       label: "bg-gradient-to-br from-green-100 to-green-200",
       glow: "rgba(132,204,22,0.25)",
       progressRing: "rgba(132,204,22,0.85)",
