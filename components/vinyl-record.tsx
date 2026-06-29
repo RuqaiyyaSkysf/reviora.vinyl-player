@@ -323,12 +323,13 @@ export function VinylRecord() {
   const strokeDashoffset = ringCircumference - (progress / 100) * ringCircumference
 
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="relative flex items-center justify-center" style={{ perspective: "1000px" }}>
       {/* Progress ring container */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ willChange: "opacity" }}>
         <svg
           className="w-[calc(100%+24px)] h-[calc(100%+24px)] -rotate-90"
           viewBox="0 0 108 108"
+          style={{ backfaceVisibility: "visible" }}
         >
           {/* Background ring */}
           <circle
@@ -336,8 +337,9 @@ export function VinylRecord() {
             cy="54"
             r={ringRadius}
             fill="none"
-            stroke="rgba(255,255,255,0.1)"
+            stroke="white"
             strokeWidth="3"
+            opacity="0.1"
             className="transition-all duration-500"
           />
           {/* Progress ring */}
@@ -351,6 +353,7 @@ export function VinylRecord() {
             strokeLinecap="round"
             strokeDasharray={ringCircumference}
             strokeDashoffset={strokeDashoffset}
+            opacity="1"
             className="transition-all duration-300 ease-out"
           />
           {/* Progress indicator dot */}

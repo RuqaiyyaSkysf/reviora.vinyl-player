@@ -226,6 +226,9 @@ export function Tonearm() {
           style={{
             transform: `rotate(${armAngle}deg)`,
             transformOrigin: "right center",
+            perspective: "1000px",
+            backfaceVisibility: "visible",
+            willChange: "transform",
           }}
         >
           {/* Arm shadow */}
@@ -245,9 +248,10 @@ export function Tonearm() {
           >
             {/* Arm highlight */}
             <div
-              className="absolute inset-x-0 top-0 h-1 rounded-full opacity-60"
+              className="absolute inset-x-0 top-0 h-1 rounded-full"
               style={{
                 background: `linear-gradient(to right, transparent, ${colors.armHighlight}, transparent)`,
+                opacity: 0.6,
               }}
             />
           </div>
