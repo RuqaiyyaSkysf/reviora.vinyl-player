@@ -525,12 +525,12 @@ export function VinylRecord() {
             background: `
               linear-gradient(
                 135deg,
-                rgba(255,255,255,0.18) 0%,
-                rgba(255,255,255,0.08) 25%,
+                rgba(255,255,255,0.35) 0%,
+                rgba(255,255,255,0.15) 25%,
                 transparent 45%,
                 transparent 55%,
-                rgba(0,0,0,0.2) 75%,
-                rgba(0,0,0,0.3) 100%
+                rgba(0,0,0,0.25) 75%,
+                rgba(0,0,0,0.4) 100%
               )
             `,
             imageRendering: "crisp-edges",
@@ -550,11 +550,11 @@ export function VinylRecord() {
                   90deg,
                   transparent 0%,
                   transparent 42%,
-                  rgba(255,255,255,0.04) 45%,
-                  rgba(255,255,255,0.08) 48%,
-                  rgba(255,255,255,0.12) 50%,
-                  rgba(255,255,255,0.08) 52%,
-                  rgba(255,255,255,0.04) 55%,
+                  rgba(255,255,255,0.12) 45%,
+                  rgba(255,255,255,0.2) 48%,
+                  rgba(255,255,255,0.28) 50%,
+                  rgba(255,255,255,0.2) 52%,
+                  rgba(255,255,255,0.12) 55%,
                   transparent 58%,
                   transparent 100%
                 )
@@ -575,9 +575,9 @@ export function VinylRecord() {
                   -60deg,
                   transparent 0%,
                   transparent 65%,
-                  rgba(255,255,255,0.03) 70%,
-                  rgba(255,255,255,0.06) 75%,
-                  rgba(255,255,255,0.03) 80%,
+                  rgba(255,255,255,0.08) 70%,
+                  rgba(255,255,255,0.15) 75%,
+                  rgba(255,255,255,0.08) 80%,
                   transparent 85%,
                   transparent 100%
                 )
@@ -590,7 +590,7 @@ export function VinylRecord() {
         <div
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
-            boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.08)",
+            boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.2)",
           }}
         />
       </div>
