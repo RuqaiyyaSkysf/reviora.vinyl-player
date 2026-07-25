@@ -340,6 +340,7 @@ export function VinylRecord() {
         <svg
           className="w-[calc(100%+24px)] h-[calc(100%+24px)] -rotate-90"
           viewBox="0 0 108 108"
+          style={{ imageRendering: "crisp-edges" }}
         >
           {/* Background ring */}
           <circle
@@ -383,12 +384,11 @@ export function VinylRecord() {
       <div
         ref={vinylRef}
         className={cn(
-          "relative z-50 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full transition-shadow duration-700",
+          "relative z-50 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full",
           isDragging ? "cursor-grabbing" : "cursor-grab"
         )}
         style={{
           transform: `rotate(${rotation}deg)`,
-          willChange: "transform",
           background: vinylGradient,
           boxShadow: innerShadow,
           backgroundClip: "border-box",
@@ -396,6 +396,12 @@ export function VinylRecord() {
           MozBackgroundClip: "border-box",
           filter: "none",
           mixBlendMode: "normal",
+          imageRendering: "crisp-edges",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale",
+          backfaceVisibility: "hidden",
+          perspective: "none",
+          transformStyle: "preserve-3d",
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
@@ -414,6 +420,8 @@ export function VinylRecord() {
               transparent 2px,
               transparent 4px
             )`,
+            imageRendering: "crisp-edges",
+            backfaceVisibility: "hidden",
           }}
         />
 
@@ -525,6 +533,8 @@ export function VinylRecord() {
                 rgba(0,0,0,0.3) 100%
               )
             `,
+            imageRendering: "crisp-edges",
+            backfaceVisibility: "hidden",
           }}
         />
 

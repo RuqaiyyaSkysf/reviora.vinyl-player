@@ -34,6 +34,13 @@ interface ShootingStar {
 
 export function GalaxyBackground() {
   const [shootingStars, setShootingStars] = useState<ShootingStar[]>([])
+  
+  // Apply rendering optimizations for crisp appearance
+  const containerStyle = {
+    imageRendering: "crisp-edges" as const,
+    WebkitFontSmoothing: "antialiased" as const,
+    MozOsxFontSmoothing: "grayscale" as const,
+  }
 
   // Generate static stars with good visibility
   const stars = useMemo(() => {
@@ -143,7 +150,7 @@ export function GalaxyBackground() {
   }, [])
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden" style={containerStyle}>
       {/* Deep space base - very dark with subtle gradient */}
       <div 
         className="absolute inset-0"
