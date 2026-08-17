@@ -1,33 +1,39 @@
-# reviora.vinyl-player
+## 🎵 Vinyl Player
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+A customizable web-based vinyl player built for personal music and audio experiences.
 
-## Built with v0
+## ✦ Why I Built It
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+I wanted a player that felt personal.
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_Y7Xum6tS4ANFdku0hHDvaBINDSmt)
+Many existing players I came across either placed certain features behind subscriptions or didn't give me the level of customization I wanted — especially when it came to using my own audio and creating an experience around it.
 
-## Getting Started
+So I decided to build my own.
 
-First, run the development server:
+The goal is simple: create a beautiful, flexible player where I can use my own MP3 files, whether that's calming music, nature sounds, humming, Islamic nasheeds, Quran recitation, or anything else I choose.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## ✦ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🎵 Personal audio playback
+- 📁 Support for personal MP3/audio files
+- 🎨 Customizable themes and visual experience
+- 💿 Vinyl-inspired interface
+- ✨ Interactive UI and animations
+- 📱 Responsive design
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✦ Tech Stack
 
-## Learn More
+- TypeScript
+- React
+- Next.js
+- CSS
 
-To learn more, take a look at the following resources:
+## ✦ Live Demo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+[🎵 Open Vinyl Player](https://reviora-vinyl-player.vercel.app/)
+
+## ✦ Status
+
+🟡 In active refinement
+
+The project is live, with more UI improvements, customization options, and refinements planned.
